@@ -1,0 +1,10 @@
+{
+  "description": "Explore a modern digital catalog for construction materials and everyday items, designed to connect customers with a local store and facilitate inquiries via WhatsApp.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
