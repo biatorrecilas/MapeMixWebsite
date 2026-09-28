@@ -152,7 +152,7 @@ export default function TestimonialsSection() {
             href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border-2 border-[#FE5000] text-[#FE5000] hover:bg-[#FE5000] hover:text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200"
+            className="inline-flex items-center gap-2 border-2 border-[#FE5000] text-[#FE5000] hover:bg-[#FE5000] hover:text-white font-semibold px-6 py-3 rounded-full transition-all duration-200"
           >
             <MessageCircle size={18} />
             Compartilhar minha avaliação

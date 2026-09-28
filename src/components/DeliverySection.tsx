@@ -30,7 +30,7 @@ export default function DeliverySection() {
             {/* Content side */}
             <div className="p-10 lg:p-14 flex flex-col justify-center">
               <h2 className="font-display text-4xl font-bold text-white mb-4">
-                Precisa receber em casa?
+                Precisa receber no local?
               </h2>
               <p className="text-blue-200 text-lg leading-relaxed mb-6">
                 A <strong className="text-white">Mape Mix</strong> realiza frete para{' '}

@@ -47,14 +47,14 @@ export default function ContactSection() {
               href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-[#FE5000] hover:bg-[#d94300] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+              className="flex items-center justify-center gap-2 bg-[#FE5000] hover:bg-[#d94300] text-white font-semibold px-8 py-4 rounded-full transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
             >
               <MessageCircle size={20} />
               Falar no WhatsApp
             </a>
             <a
               href="tel:+5519984547023"
-              className="flex items-center justify-center gap-2 border-2 border-[#001A72] text-[#001A72] hover:bg-[#001A72] hover:text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200"
+              className="flex items-center justify-center gap-2 border-2 border-[#001A72] text-[#001A72] hover:bg-[#001A72] hover:text-white font-semibold px-8 py-4 rounded-full transition-all duration-200"
             >
               <Phone size={20} />
               Ligar agora

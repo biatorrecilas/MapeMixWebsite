@@ -74,7 +74,7 @@ export default function Cart({ items, onRemove, onClose }: CartProps) {
               href={`https://wa.me/${WA_NUMBER}?text=${waMsg}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-[#FE5000] hover:bg-[#d94300] text-white font-semibold px-4 py-3.5 rounded-xl transition-colors w-full"
+              className="flex items-center justify-center gap-2 bg-[#FE5000] hover:bg-[#d94300] text-white font-semibold px-4 py-3.5 rounded-full transition-colors w-full"
             >
               <MessageCircle size={18} />
               Solicitar orçamento no WhatsApp
@@ -82,7 +82,7 @@ export default function Cart({ items, onRemove, onClose }: CartProps) {
             <a
               href="#localizacao"
               onClick={onClose}
-              className="flex items-center justify-center gap-2 border-2 border-[#001A72] text-[#001A72] font-semibold px-4 py-3 rounded-xl transition-colors hover:bg-[#001A72]/5 w-full text-sm"
+              className="flex items-center justify-center gap-2 border-2 border-[#001A72] text-[#001A72] font-semibold px-4 py-3 rounded-full transition-colors hover:bg-[#001A72]/5 w-full text-sm"
             >
               <MapPin size={16} />
               Prefiro ir à loja

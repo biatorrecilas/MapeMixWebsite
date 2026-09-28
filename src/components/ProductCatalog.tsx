@@ -20,6 +20,7 @@ interface ProductCatalogProps {
   onCategoryChange: (cat: Category) => void;
   onAddToCart: (product: Product) => void;
   cartItems: Product[];
+  fullPage: boolean;
 }
 
 function ProductModal({
@@ -105,13 +106,13 @@ function ProductModal({
                 href={`https://wa.me/${WA_NUMBER}?text=${waMsg}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-[#FE5000] hover:bg-[#d94300] text-white font-semibold px-4 py-3 rounded-xl transition-colors text-sm"
+                className="flex items-center justify-center gap-2 bg-[#FE5000] hover:bg-[#d94300] text-white font-semibold px-4 py-3 rounded-full transition-colors text-sm"
               >
                 Consultar no WhatsApp
               </a>
               <button
                 onClick={() => onAddToCart(product)}
-                className={`flex items-center justify-center gap-2 border-2 font-semibold px-4 py-2.5 rounded-xl transition-colors text-sm ${
+                className={`flex items-center justify-center gap-2 border-2 font-semibold px-4 py-2.5 rounded-full transition-colors text-sm ${
                   inCart
                     ? 'border-green-500 text-green-600 bg-green-50'
                     : 'border-[#001A72] text-[#001A72] hover:bg-[#001A72]/5'
@@ -135,7 +136,7 @@ function ProductModal({
   );
 }
 
-export default function ProductCatalog({ activeCategory, onCategoryChange, onAddToCart, cartItems }: ProductCatalogProps) {
+export default function ProductCatalog({ activeCategory, onCategoryChange, onAddToCart, cartItems, fullPage }: ProductCatalogProps) {
   const [search, setSearch] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
@@ -158,7 +159,7 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-[#001A72] mb-4">
-            Um Mix de Produtos para o que Você Precisa
+            {fullPage ? 'Todos os Produtos' : 'Um Mix de Produtos para o que Você Precisa'}
           </h2>
         </div>
 
@@ -170,7 +171,7 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
             placeholder="Buscar produto"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#001A72]/30 focus:border-[#001A72] text-gray-800 placeholder-gray-400"
+            className="w-full pl-12 pr-4 py-4 rounded-full border border-gray-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#001A72]/30 focus:border-[#001A72] text-gray-800 placeholder-gray-400"
           />
         </div>
 
@@ -180,7 +181,7 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
             <button
               key={cat}
               onClick={() => onCategoryChange(cat)}
-              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
                 activeCategory === cat
                   ? 'bg-[#001A72] text-white shadow-md'
                   : 'bg-white text-gray-600 border border-gray-200 hover:border-[#001A72] hover:text-[#001A72]'
@@ -199,14 +200,14 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
             <p className="text-sm mt-1">Tente outro termo ou entre em contato pelo WhatsApp.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {filtered.map((product) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {(fullPage ? filtered : filtered.slice(0, 6)).map((product) => (
               <div
                 key={product.id}
                 className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col"
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden bg-gray-50">
+                <div className="relative h-32 sm:h-36 overflow-hidden bg-gray-50">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -231,28 +232,28 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
                 </div>
 
                 {/* Content */}
-                <div className="p-4 flex flex-col flex-1">
+                <div className="p-3 sm:p-3.5 flex flex-col flex-1">
                   <span className="text-xs text-[#001A72]/60 font-medium mb-1">{product.category}</span>
-                  <h3 className="font-display font-bold text-[#001A72] text-base leading-snug mb-1.5 line-clamp-2">
+                  <h3 className="font-display font-bold text-[#001A72] text-sm sm:text-base leading-snug mb-1 line-clamp-2">
                     {product.name}
                   </h3>
-                  <p className="text-gray-500 text-xs leading-relaxed mb-3 line-clamp-2">{product.description}</p>
+                  <p className="text-gray-500 text-[11px] sm:text-xs leading-relaxed mb-2 line-clamp-2">{product.description}</p>
 
                   {product.price && (
-                    <p className="text-[#FE5000] font-display font-bold text-xl mb-3">{product.price}</p>
+                    <p className="text-[#FE5000] font-display font-bold text-lg mb-2">{product.price}</p>
                   )}
 
                   <div className="mt-auto flex gap-2">
                     <button
                       onClick={() => setSelectedProduct(product)}
-                      className="flex-1 flex items-center justify-center gap-1.5 bg-[#001A72] hover:bg-[#0025a8] text-white text-sm font-semibold py-2.5 rounded-xl transition-colors"
+                      className="flex-1 flex items-center justify-center gap-1 bg-[#001A72] hover:bg-[#0025a8] text-white text-xs sm:text-sm font-semibold py-2 rounded-full transition-colors"
                     >
                       <Eye size={14} />
                       Ver produto
                     </button>
                     <button
                       onClick={() => onAddToCart(product)}
-                      className={`p-2.5 rounded-xl border-2 transition-all ${
+                      className={`p-2 rounded-full border-2 transition-all ${
                         cartIds.has(product.id)
                           ? 'border-green-500 text-green-600 bg-green-50'
                           : 'border-gray-200 text-gray-500 hover:border-[#FE5000] hover:text-[#FE5000]'
@@ -265,6 +266,11 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
                 </div>
               </div>
             ))}
+          </div>
+        )}
+        {!fullPage && (
+          <div className="text-center mt-10">
+            <a href="/produtos" className="inline-flex items-center gap-2 rounded-full bg-[#FE5000] px-8 py-4 text-white font-bold text-lg shadow-lg hover:bg-[#d94300] hover:-translate-y-0.5 transition">Ver mais produtos</a>
           </div>
         )}
       </div>

@@ -3,10 +3,10 @@ import { Menu, X, MessageCircle, ShoppingBag } from 'lucide-react';
 import logoSrc from '../assets/Logo.svg';
 
 const navLinks = [
-  { label: 'Início', href: '#inicio' },
-  { label: 'Produtos', href: '#catalogo' },
-  { label: 'Localização', href: '#localizacao' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'Início', href: '/' },
+  { label: 'Produtos', href: '/produtos' },
+  { label: 'Localização', href: '/#localizacao' },
+  { label: 'Contato', href: '/#contato' },
 ];
 
 const WA_NUMBER = '5519984547023';
@@ -15,9 +15,10 @@ const WA_MSG = encodeURIComponent('Olá, Mape Mix! Gostaria de informações sob
 interface HeaderProps {
   cartCount: number;
   onCartOpen: () => void;
+  productsPage: boolean;
 }
 
-export default function Header({ cartCount, onCartOpen }: HeaderProps) {
+export default function Header({ cartCount, onCartOpen, productsPage }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -35,7 +36,7 @@ export default function Header({ cartCount, onCartOpen }: HeaderProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
         {/* Logo */}
-        <a href="#inicio" className="flex-shrink-0">
+        <a href="/" className="flex-shrink-0">
           <img src={logoSrc} alt="Mape Mix — Reparo e Construção" className="h-26 w-auto" />
         </a>
 
@@ -45,6 +46,7 @@ export default function Header({ cartCount, onCartOpen }: HeaderProps) {
             <a
               key={link.href}
               href={link.href}
+              onClick={link.label === 'Produtos' && productsPage ? (event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); } : undefined}
               className="px-3 py-2 text-sm font-medium text-[#001A72] hover:text-[#FE5000] transition-colors"
             >
               {link.label}
@@ -97,7 +99,7 @@ export default function Header({ cartCount, onCartOpen }: HeaderProps) {
               href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 flex items-center justify-center gap-2 bg-[#FE5000] text-white font-semibold px-4 py-3 rounded-xl"
+              className="mt-2 flex items-center justify-center gap-2 bg-[#FE5000] text-white font-semibold px-4 py-3 rounded-full"
             >
               <MessageCircle size={18} />
               Fale no WhatsApp

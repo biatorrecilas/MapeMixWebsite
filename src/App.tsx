@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import CategorySection from './components/CategorySection';
@@ -17,6 +17,13 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState<Category>('Todas');
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
+  const [productsPage, setProductsPage] = useState(window.location.pathname === '/produtos');
+
+  useEffect(() => {
+    const updateRoute = () => setProductsPage(window.location.pathname === '/produtos');
+    window.addEventListener('popstate', updateRoute);
+    return () => window.removeEventListener('popstate', updateRoute);
+  }, []);
 
   const handleAddToCart = (product: Product) => {
     setCartItems((prev) => {
@@ -35,21 +42,22 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header cartCount={cartItems.length} onCartOpen={() => setCartOpen(true)} />
+      <Header cartCount={cartItems.length} onCartOpen={() => setCartOpen(true)} productsPage={productsPage} />
 
       <main>
-        <Hero />
-        <CategorySection onCategorySelect={handleCategorySelect} />
+        {!productsPage && <Hero />}
+        {!productsPage && <CategorySection onCategorySelect={handleCategorySelect} />}
         <ProductCatalog
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
           onAddToCart={handleAddToCart}
           cartItems={cartItems}
+          fullPage={productsPage}
         />
-        <LocationSection />
-        <DeliverySection />
-        <InstagramSection />
-        <TestimonialsSection />
+        {!productsPage && <LocationSection />}
+        {!productsPage && <DeliverySection />}
+        {!productsPage && <InstagramSection />}
+        {!productsPage && <TestimonialsSection />}
       </main>
 
       <Footer />
