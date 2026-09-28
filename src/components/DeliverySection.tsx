@@ -1,5 +1,6 @@
 import { Truck, MessageCircle, MapPin, Clock } from 'lucide-react';
 import entrega from '../assets/loja.svg';
+import deliveryWarning from '../assets/delivery-warning.svg';
 
 const WA_NUMBER = '5519984547023';
 const WA_MSG = encodeURIComponent('Olá, Mape Mix! Gostaria de consultar o frete para o meu endereço em Campinas e região.');
@@ -8,7 +9,8 @@ export default function DeliverySection() {
   return (
     <section className="py-20 bg-[#f8f9fc]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="bg-[#001A72] rounded-3xl overflow-hidden">
+        <div className="relative">
+          <div className="bg-[#001A72] rounded-3xl overflow-hidden">
           <div className="grid lg:grid-cols-2 gap-0">
             {/* Image side */}
             <div className="relative h-64 lg:h-auto min-h-64">
@@ -63,6 +65,13 @@ export default function DeliverySection() {
               </a>
             </div>
           </div>
+          </div>
+          <img
+            src={deliveryWarning}
+            alt=""
+            aria-hidden="true"
+            className="delivery-warning-float absolute right-8 top-0 z-20 h-32 w-32 object-contain"
+          />
         </div>
       </div>
     </section>

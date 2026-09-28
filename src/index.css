@@ -30,6 +30,51 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.warning-stripes {
+  background-image: repeating-linear-gradient(135deg, #fe5000 0 16px, #121927 16px 32px);
+  background-size: 45px 32px;
+  animation: warning-stripes 1.4s linear infinite;
+}
+
+@keyframes warning-stripes {
+  to {
+    background-position-x: 45px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .warning-stripes {
+    animation: none;
+  }
+}
+
+.delivery-warning-float {
+  transform: translateY(-50%);
+  filter: drop-shadow(0 8px 12px rgba(0, 26, 114, 0.2));
+  animation: delivery-warning-float 3s ease-in-out infinite;
+}
+
+@keyframes delivery-warning-float {
+  0%, 55%, 100% {
+    transform: translateY(-50%) rotate(0deg) scale(1);
+  }
+  58%, 70% {
+    transform: translateY(-50%) rotate(-6deg) scale(1.03);
+  }
+  64%, 76% {
+    transform: translateY(-50%) rotate(6deg) scale(1.03);
+  }
+  82% {
+    transform: translateY(-50%) rotate(0deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .delivery-warning-float {
+    animation: none;
+  }
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Outfit', sans-serif;
 }

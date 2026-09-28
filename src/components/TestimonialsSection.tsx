@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Star, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import testimonialIcon from '../assets/testimonials-announcement.svg';
+import testimonialSocialIcon from '../assets/testimonials-social.svg';
 
 const WA_NUMBER = '5519984547023';
 const WA_MSG = encodeURIComponent('Olá, Mape Mix! Gostaria de compartilhar minha experiência com a loja.');
@@ -61,8 +63,20 @@ export default function TestimonialsSection() {
   const activeTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section className="relative isolate overflow-hidden py-20 bg-white">
+      <img
+        src={testimonialIcon}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute right-5 top-5 z-0 h-200 w-200 object-contain opacity-[0.08] sm:right-10 sm:top-8 sm:h-72 sm:w-72"
+      />
+      <img
+        src={testimonialSocialIcon}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-4 left-12 z-0 h-250 w-250 object-contain opacity-[0.08] sm:bottom-8 sm:left-16 sm:h-72 sm:w-72"
+      />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Header - Alinhado à esquerda */}
         <div className="text-left mb-14">

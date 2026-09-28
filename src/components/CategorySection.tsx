@@ -1,28 +1,36 @@
-import { Droplets, Lightbulb, PaintRoller, Wrench, Zap, Nut } from 'lucide-react';
 import type { Category } from '../data/products';
+import eletricaIcon from '../assets/category-icons/Elétrica.svg';
+import hidraulicaIcon from '../assets/category-icons/Hidráulica.svg';
+import iluminacaoIcon from '../assets/category-icons/Iluminação.svg';
+import ferramentasIcon from '../assets/category-icons/Ferramentas.svg';
+import pinturaIcon from '../assets/category-icons/Pintura.svg';
+import ferragensIcon from '../assets/category-icons/Ferragens.svg';
+import utilidadesIcon from '../assets/category-icons/Utilidades.svg';
 
 interface CategorySectionProps {
   onCategorySelect: (cat: Category) => void;
 }
 
 const highlights = [
-  { label: 'Elétrica', category: 'Elétrica' as Category, icon: Zap, color: '#ffc928', glow: 'rgba(255,201,40,.28)' },
-  { label: 'Hidráulica', category: 'Hidráulica' as Category, icon: Droplets, color: '#36a9ff', glow: 'rgba(54,169,255,.25)' },
-  { label: 'Iluminação', category: 'Iluminação' as Category, icon: Lightbulb, color: '#ff9638', glow: 'rgba(255,150,56,.26)' },
-  { label: 'Ferramentas', category: 'Ferramentas' as Category, icon: Wrench, color: '#ff684a', glow: 'rgba(255,104,74,.24)' },
-  { label: 'Pintura', category: 'Reformas' as Category, icon: PaintRoller, color: '#b38aff', glow: 'rgba(179,138,255,.25)' },
-  { label: 'Ferragem', category: 'Manutenção' as Category, icon: Nut, color: '#68d6a3', glow: 'rgba(104,214,163,.22)' },
+  { label: 'Elétrica', category: 'Elétrica' as Category, icon: eletricaIcon },
+  { label: 'Hidráulica', category: 'Hidráulica' as Category, icon: hidraulicaIcon },
+  { label: 'Iluminação', category: 'Iluminação' as Category, icon: iluminacaoIcon },
+  { label: 'Ferramentas', category: 'Ferramentas' as Category, icon: ferramentasIcon },
+  { label: 'Pintura', category: 'Reformas' as Category, icon: pinturaIcon },
+  { label: 'Ferragens', category: 'Manutenção' as Category, icon: ferragensIcon },
+  { label: 'Utilidades', category: 'Casa e dia a dia' as Category, icon: utilidadesIcon },
 ];
 
 export default function CategorySection({ onCategorySelect }: CategorySectionProps) {
   return (
-    <section id="categorias" className="py-16 sm:py-20 bg-white">
+    <section id="categorias" className="py-20 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-10 sm:mb-14">
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-[#001A72]">Aqui você Encontra</h2>
+        <div className="text-center mb-12 sm:mb-16">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FE5000] mb-3">Do reparo rápido à reforma completa</p>
+          <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-[#001A72]">Aqui Você Encontra</h2>
         </div>
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-          {highlights.map(({ label, category, icon: Icon, color, glow }) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4 sm:gap-6">
+          {highlights.map(({ label, category, icon }) => (
             <button
               key={label}
               type="button"
@@ -31,14 +39,12 @@ export default function CategorySection({ onCategorySelect }: CategorySectionPro
                 document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth' });
               }}
               aria-label={`Ver produtos de ${label}`}
-              className="group flex w-[calc(33.333%-1rem)] sm:w-[calc(25%-1.5rem)] lg:w-[calc(16.666%-1.25rem)] flex-col items-center gap-4 bg-transparent p-2 transition-transform duration-300 hover:-translate-y-1.5"
+              className="group flex flex-col items-center gap-4 rounded-2xl bg-transparent p-1 transition-transform duration-300 hover:-translate-y-1"
             >
-              <span className="relative flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center rounded-[2rem] transition-transform duration-300 group-hover:rotate-[-5deg] group-hover:scale-105"
-                style={{ background: `radial-gradient(circle at 32% 25%, white 0%, ${glow} 48%, rgba(0,26,114,.06) 100%)`, boxShadow: `inset 0 2px 5px rgba(255,255,255,.9), 0 12px 22px ${glow}` }}>
-                <span className="absolute inset-2 rounded-[1.5rem] border border-white/80" />
-                <Icon size={48} strokeWidth={1.8} style={{ color, filter: 'drop-shadow(0 4px 3px rgba(0,26,114,.16))' }} />
+              <span className="flex h-32 w-32 sm:h-36 sm:w-36 items-center justify-center">
+                <img src={icon} alt="" aria-hidden="true" className="h-full w-full object-contain" loading="lazy" />
               </span>
-              <span className="font-display text-sm sm:text-base font-bold text-[#001A72]">{label}</span>
+              <span className="font-display text-sm sm:text-base font-semibold text-[#001A72]">{label}</span>
             </button>
           ))}
         </div>

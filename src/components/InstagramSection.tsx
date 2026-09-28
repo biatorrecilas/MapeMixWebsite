@@ -70,8 +70,10 @@ const metrics = [
 
 export default function SocialSection() {
   return (
-    <section id="redes-sociais" className="py-20 bg-[#001A72] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="redes-sociais" className="relative isolate py-20 bg-[#001A72] overflow-hidden">
+      <div aria-hidden="true" className="warning-stripes absolute inset-x-0 top-0 h-4" />
+      <div aria-hidden="true" className="warning-stripes absolute inset-x-0 bottom-0 h-4" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           

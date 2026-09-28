@@ -11,6 +11,7 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import Cart from './components/Cart';
+import AnnouncementsPage from './components/AnnouncementsPage';
 import type { Category, Product } from './data/products';
 
 export default function App() {
@@ -18,12 +19,25 @@ export default function App() {
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [productsPage, setProductsPage] = useState(window.location.pathname === '/produtos');
+  const [announcementsPage, setAnnouncementsPage] = useState(window.location.pathname === '/comunicados');
 
   useEffect(() => {
-    const updateRoute = () => setProductsPage(window.location.pathname === '/produtos');
+    const updateRoute = () => {
+      setProductsPage(window.location.pathname === '/produtos');
+      setAnnouncementsPage(window.location.pathname === '/comunicados');
+    };
     window.addEventListener('popstate', updateRoute);
     return () => window.removeEventListener('popstate', updateRoute);
   }, []);
+
+  const openAnnouncementsPage = () => {
+    if (window.location.pathname !== '/comunicados') {
+      window.history.pushState({}, '', '/comunicados');
+      setProductsPage(false);
+      setAnnouncementsPage(true);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleAddToCart = (product: Product) => {
     setCartItems((prev) => {
@@ -42,23 +56,33 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header cartCount={cartItems.length} onCartOpen={() => setCartOpen(true)} productsPage={productsPage} />
+      <Header
+        cartCount={cartItems.length}
+        onCartOpen={() => setCartOpen(true)}
+        productsPage={productsPage}
+        announcementsPage={announcementsPage}
+        onAnnouncementsOpen={openAnnouncementsPage}
+      />
 
-      <main>
-        {!productsPage && <Hero />}
-        {!productsPage && <CategorySection onCategorySelect={handleCategorySelect} />}
-        <ProductCatalog
-          activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
-          onAddToCart={handleAddToCart}
-          cartItems={cartItems}
-          fullPage={productsPage}
-        />
-        {!productsPage && <LocationSection />}
-        {!productsPage && <DeliverySection />}
-        {!productsPage && <InstagramSection />}
-        {!productsPage && <TestimonialsSection />}
-      </main>
+      {announcementsPage ? (
+        <AnnouncementsPage />
+      ) : (
+        <main>
+          {!productsPage && <Hero />}
+          {!productsPage && <CategorySection onCategorySelect={handleCategorySelect} />}
+          <ProductCatalog
+            activeCategory={activeCategory}
+            onCategoryChange={setActiveCategory}
+            onAddToCart={handleAddToCart}
+            cartItems={cartItems}
+            fullPage={productsPage}
+          />
+          {!productsPage && <LocationSection />}
+          {!productsPage && <DeliverySection />}
+          {!productsPage && <InstagramSection />}
+          {!productsPage && <TestimonialsSection />}
+        </main>
+      )}
 
       <Footer />
       <WhatsAppFloat />

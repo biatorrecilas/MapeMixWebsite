@@ -154,34 +154,35 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
   const cartIds = new Set(cartItems.map((p) => p.id));
 
   return (
-    <section id="catalogo" className="py-20 bg-[#f8f9fc]">
+    <section id="catalogo" className={`${fullPage ? 'pt-32 sm:pt-36 pb-24 sm:pb-28' : 'py-24 sm:py-28'} bg-[#f7f8fb]`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-[#001A72] mb-4">
+        <div className="text-center mb-14">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FE5000] mb-3">Escolha por onde começar</p>
+          <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-[#001A72] mb-4">
             {fullPage ? 'Todos os Produtos' : 'Um Mix de Produtos para o que Você Precisa'}
           </h2>
         </div>
 
         {/* Search */}
-        <div className="relative max-w-2xl mx-auto mb-8">
+        <div className="relative max-w-2xl mx-auto mb-12 sm:mb-14">
           <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
             placeholder="Buscar produto"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-12 pr-4 py-4 rounded-full border border-gray-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#001A72]/30 focus:border-[#001A72] text-gray-800 placeholder-gray-400"
+            className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#001A72]/30 focus:border-[#001A72] text-gray-800 placeholder-gray-400"
           />
         </div>
 
         {/* Category filters */}
-        <div className="flex flex-wrap gap-2 justify-center mb-10">
+        <div className="flex flex-wrap gap-3 justify-center mb-14 sm:mb-16">
           {allCategories.map((cat) => (
             <button
               key={cat}
               onClick={() => onCategoryChange(cat)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={`min-h-11 px-5 py-3 rounded-full text-sm font-semibold transition-all duration-200 ${
                 activeCategory === cat
                   ? 'bg-[#001A72] text-white shadow-md'
                   : 'bg-white text-gray-600 border border-gray-200 hover:border-[#001A72] hover:text-[#001A72]'
@@ -204,7 +205,7 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
             {(fullPage ? filtered : filtered.slice(0, 6)).map((product) => (
               <div
                 key={product.id}
-                className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col"
+                className="group bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(15,35,80,0.05)] hover:shadow-[0_12px_30px_rgba(15,35,80,0.10)] transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col"
               >
                 {/* Image */}
                 <div className="relative h-32 sm:h-36 overflow-hidden bg-gray-50">

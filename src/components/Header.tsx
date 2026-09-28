@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, MessageCircle, ShoppingBag } from 'lucide-react';
+import { Menu, X, MessageCircle, ShoppingBag, Clock3, MapPin, Phone, Bell } from 'lucide-react';
 import logoSrc from '../assets/Logo.svg';
 
 const navLinks = [
@@ -16,9 +16,11 @@ interface HeaderProps {
   cartCount: number;
   onCartOpen: () => void;
   productsPage: boolean;
+  announcementsPage: boolean;
+  onAnnouncementsOpen: () => void;
 }
 
-export default function Header({ cartCount, onCartOpen, productsPage }: HeaderProps) {
+export default function Header({ cartCount, onCartOpen, productsPage, announcementsPage, onAnnouncementsOpen }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -56,6 +58,17 @@ export default function Header({ cartCount, onCartOpen, productsPage }: HeaderPr
 
         {/* Actions */}
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onAnnouncementsOpen}
+            className="p-2 text-[#001A72] transition-colors hover:text-[#FE5000]"
+            aria-label="Comunicados da Mape Mix"
+            title="Comunicados"
+            aria-current={announcementsPage ? 'page' : undefined}
+          >
+            <Bell size={22} strokeWidth={2} />
+          </button>
+
           {/* Cart */}
           <button
             onClick={onCartOpen}
@@ -78,6 +91,23 @@ export default function Header({ cartCount, onCartOpen, productsPage }: HeaderPr
           >
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
+        </div>
+      </div>
+
+      <div className="bg-[#001A72] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 py-2.5 sm:min-h-10 sm:gap-x-8 sm:py-0">
+          <div className="flex items-center gap-2 text-[11px] sm:text-xs">
+            <Clock3 size={14} className="shrink-0 text-[#FE5000]" />
+            <span>Seg a Sex: 07:30–17:30 <span className="text-white/50">·</span> Sáb: 08:00–13:00</span>
+          </div>
+          <a href={productsPage || announcementsPage ? '/#localizacao' : '#localizacao'} className="flex items-center gap-2 text-[11px] sm:text-xs hover:text-orange-200 transition-colors">
+            <MapPin size={14} className="shrink-0 text-[#FE5000]" />
+            <span>Av. Francisco de Angelis, 1244 · Vila Paraíso, Campinas</span>
+          </a>
+          <a href="tel:+5519984547023" className="flex items-center gap-2 text-[11px] sm:text-xs hover:text-orange-200 transition-colors">
+            <Phone size={14} className="shrink-0 text-[#FE5000]" />
+            <span>(19) 98454-7023</span>
+          </a>
         </div>
       </div>
 

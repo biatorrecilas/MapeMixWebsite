@@ -14,9 +14,7 @@ export default function LocationSection() {
           <h2 className="font-display text-4xl sm:text-5xl font-bold text-[#001A72] mb-4">
             Venha nos Visitar!
           </h2>
-          <p className="text-gray-500 text-lg">
-            Uma loja completa com atendimento de quem entende do assunto
-          </p>
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FE5000] mb-3">Uma loja completa com atendimento de quem entende do assunto</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 items-stretch">
