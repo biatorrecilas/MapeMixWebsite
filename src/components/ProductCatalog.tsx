@@ -1,16 +1,17 @@
 import { useState, useMemo } from 'react';
-import { Search, SlidersHorizontal, Star, ShoppingBag, Eye, X } from 'lucide-react';
+import { Search, SlidersHorizontal, Star, ShoppingBag, Eye, X, ArrowRight } from 'lucide-react';
 import { products, type Category, type Product } from '../data/products';
 
 const allCategories: Category[] = [
-  'Todas',
   'Elétrica',
   'Hidráulica',
   'Iluminação',
   'Ferramentas',
-  'Reformas',
+  'Ferragens',
+  'Pintura',
+  'Utilidades',
   'Manutenção',
-  'Casa e dia a dia',
+  'Casa e Dia a Dia',
 ];
 
 const WA_NUMBER = '5519984547023';
@@ -154,18 +155,32 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
   const cartIds = new Set(cartItems.map((p) => p.id));
 
   return (
-    <section id="catalogo" className={`${fullPage ? 'pt-32 sm:pt-36 pb-24 sm:pb-28' : 'py-24 sm:py-28'} bg-[#f7f8fb]`}>
+    <section id="catalogo" className={`${fullPage ? 'pt-32 sm:pt-36 pb-24 sm:pb-28' : 'pt-16 sm:pt-20 pb-24 sm:pb-28'} bg-[#f7f8fb]`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-14">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FE5000] mb-3">Escolha por onde começar</p>
-          <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-[#001A72] mb-4">
-            {fullPage ? 'Todos os Produtos' : 'Um Mix de Produtos para o que Você Precisa'}
+        <div className="mb-8 flex flex-col gap-6 text-left md:flex-row md:items-center md:justify-between">
+        <div className="min-w-0">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FE5000] mb-3">Você procura, a Mape Mix tem!</p>
+          <h2 className={`font-display font-extrabold text-[#001A72] ${fullPage ? 'text-4xl sm:text-5xl' : 'max-w-2xl text-4xl sm:text-5xl'}`}>
+            {fullPage ? 'Todos os Produtos' : <>Um Mix de Produtos<br className="hidden sm:block" /> para o que Você Precisa</>}
           </h2>
-        </div>
-
-        {/* Search */}
-        <div className="relative max-w-2xl mx-auto mb-12 sm:mb-14">
+          </div>
+          {/* Search */}
+        <div className={`relative w-full shrink-0 md:w-72 lg:w-80 [&_input]:rounded-full [&_input]:!pl-20 [&>svg]:!left-12 ${fullPage ? '' : 'md:self-start'}`}>
+          <button
+            type="button"
+            aria-label="Abrir filtros de produtos"
+            title="Filtros"
+            onClick={() => document.getElementById('product-filters')?.classList.toggle('hidden')}
+            className={window.location.pathname === '/' ? 'hidden' : 'absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full p-2 text-[#001A72] transition-colors hover:bg-blue-50'}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M4 6h16M7 12h10m-7 6h4" />
+              <circle cx="8" cy="6" r="1" fill="currentColor" />
+              <circle cx="15" cy="12" r="1" fill="currentColor" />
+              <circle cx="12" cy="18" r="1" fill="currentColor" />
+            </svg>
+          </button>
           <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
@@ -174,10 +189,11 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
             onChange={(e) => setSearch(e.target.value)}
             className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#001A72]/30 focus:border-[#001A72] text-gray-800 placeholder-gray-400"
           />
+          </div>
         </div>
 
         {/* Category filters */}
-        <div className="flex flex-wrap gap-3 justify-center mb-14 sm:mb-16">
+      <div id="product-filters" className={window.location.pathname === '/' ? 'hidden' : 'hidden mb-12 flex flex-wrap justify-start gap-3 sm:mb-14'}>
           {allCategories.map((cat) => (
             <button
               key={cat}
@@ -201,8 +217,8 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
             <p className="text-sm mt-1">Tente outro termo ou entre em contato pelo WhatsApp.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {(fullPage ? filtered : filtered.slice(0, 6)).map((product) => (
+          <div className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 ${fullPage ? '' : '[&>*:nth-child(n+5)]:hidden sm:[&>*:nth-child(n+5)]:block sm:[&>*:nth-child(n+7)]:hidden lg:[&>*:nth-child(n+7)]:block lg:[&>*:nth-child(n+9)]:hidden'}`}>
+            {(fullPage ? filtered : filtered.slice(0, 8)).map((product) => (
               <div
                 key={product.id}
                 className="group bg-white rounded-2xl border border-gray-100 shadow-[0_2px_12px_rgba(15,35,80,0.05)] hover:shadow-[0_12px_30px_rgba(15,35,80,0.10)] transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col"
@@ -259,7 +275,7 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
                           ? 'border-green-500 text-green-600 bg-green-50'
                           : 'border-gray-200 text-gray-500 hover:border-[#FE5000] hover:text-[#FE5000]'
                       }`}
-                      title="Adicionar à lista de interesse"
+                      title="Adicionar à lista de Interesse"
                     >
                       <ShoppingBag size={16} />
                     </button>

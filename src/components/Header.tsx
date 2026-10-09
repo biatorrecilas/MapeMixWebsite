@@ -73,7 +73,7 @@ export default function Header({ cartCount, onCartOpen, productsPage, announceme
           <button
             onClick={onCartOpen}
             className="relative p-2 text-[#001A72] hover:text-[#FE5000] transition-colors"
-            aria-label="Lista de interesse"
+            aria-label="Lista de Interesse"
           >
             <ShoppingBag size={22} />
             {cartCount > 0 && (

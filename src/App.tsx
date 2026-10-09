@@ -72,7 +72,9 @@ export default function App() {
           {!productsPage && <CategorySection onCategorySelect={handleCategorySelect} />}
           <ProductCatalog
             activeCategory={activeCategory}
-            onCategoryChange={setActiveCategory}
+            onCategoryChange={(cat) =>
+              setActiveCategory((current) => (current === cat ? 'Todas' : cat))
+            }
             onAddToCart={handleAddToCart}
             cartItems={cartItems}
             fullPage={productsPage}

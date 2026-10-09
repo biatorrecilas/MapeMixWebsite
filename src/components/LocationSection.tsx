@@ -1,5 +1,6 @@
 import { MapPin, Phone, Clock, ExternalLink } from 'lucide-react';
 import frenteImg from '../assets/frente.svg';
+import equipeImg from '../assets/visita-mape-mix.webp';
 
 const WA_NUMBER = '5519984547023';
 const WA_MSG = encodeURIComponent('Olá, Mape Mix! Gostaria de informações sobre o horário de funcionamento da loja.');
@@ -7,16 +8,32 @@ const MAPS_URL = 'https://maps.app.goo.gl/8WTRhHMXaHHZPaa56';
 
 export default function LocationSection() {
   return (
-    <section id="localizacao" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-[#001A72] mb-4">
-            Venha nos Visitar!
-          </h2>
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FE5000] mb-3">Uma loja completa com atendimento de quem entende do assunto</p>
+    <section id="localizacao" className="pb-20 bg-white">
+      <div className="relative isolate min-h-[190px] overflow-visible bg-[#001A72] sm:min-h-[210px]">
+        <div className="absolute inset-y-0 right-0 w-[min(42vw,320px)] overflow-hidden rounded-r-2xl">
+          <img
+            src={equipeImg}
+            alt="Atendente da Mape Mix pronta para receber você na loja"
+            className="absolute inset-0 h-full w-full object-cover object-[center_28%] [clip-path:polygon(16%_0%,100%_0%,100%_100%,0%_100%)]"
+          />
+          <div aria-hidden="true" className="absolute inset-0 bg-[#FE5000] [clip-path:polygon(15%_0%,16%_0%,1%_100%,0%_100%)]" />
         </div>
+        <div className="relative z-[1] mx-auto flex min-h-[190px] max-w-7xl items-center px-4 py-4 sm:min-h-[210px] sm:px-6 sm:py-5">
+          <div className="max-w-[54%] sm:max-w-[62%]">
+            <p className="mb-2 text-[0.65rem] font-extrabold uppercase tracking-[0.2em] text-[#FE6A2A] sm:mb-3 sm:text-xs">
+              Sua loja de confiança em Campinas
+            </p>
+            <h2 className="font-display text-3xl font-extrabold leading-[1.02] tracking-tight text-white sm:text-5xl">
+              Venha nos Visitar!
+            </h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-blue-100 sm:text-base">
+              Uma loja completa, com atendimento de quem entende do assunto.
+            </p>
+          </div>
+        </div>
+      </div>
 
+      <div className="mx-auto mt-10 max-w-7xl px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-8 items-stretch">
           {/* Left: store image */}
           <div className="relative rounded-3xl overflow-hidden bg-gray-100 min-h-80">

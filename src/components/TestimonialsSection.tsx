@@ -3,8 +3,7 @@ import { Star, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import testimonialIcon from '../assets/testimonials-announcement.svg';
 import testimonialSocialIcon from '../assets/testimonials-social.svg';
 
-const WA_NUMBER = '5519984547023';
-const WA_MSG = encodeURIComponent('Olá, Mape Mix! Gostaria de compartilhar minha experiência com a loja.');
+const GOOGLE_REVIEW_URL = 'https://www.google.com/maps?cid=17729418899676593261&action=openratings&ct=write-review#lrd=0x94c8cf58e3364a6f:0xf60b8c8e0551fc6d,1,,,,';
 
 const testimonials = [
   {
@@ -163,7 +162,7 @@ export default function TestimonialsSection() {
         <div className="flex flex-col items-end text-right">
           <p className="text-gray-500 mb-4">Quer contar sua experiência?</p>
           <a
-            href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
+            href={GOOGLE_REVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border-2 border-[#FE5000] text-[#FE5000] hover:bg-[#FE5000] hover:text-white font-semibold px-6 py-3 rounded-full transition-all duration-200"

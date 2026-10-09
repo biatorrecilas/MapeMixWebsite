@@ -50,8 +50,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-[#001058]/90 via-[#001A72]/55 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#001058]/35 via-transparent to-transparent" />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full py-8 lg:py-12">
-        <div className="max-w-2xl text-white">
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-orange-200 font-medium mb-4">Você procura, a Mape Mix tem</div>
+        <div className="max-w-2xl translate-y-4 text-white sm:translate-y-6">
           <h1 className="font-display text-4xl sm:text-5xl lg:text-5xl font-bold leading-tight mb-4">Encontre tudo o que <span className="text-[#FE5000]">você precisa</span> em um só lugar.</h1>
           <p className="text-blue-100 text-lg leading-relaxed max-w-lg">Elétrica, hidráulica, iluminação, ferramentas, pintura, ferragens, materiais para reformas, manutenção, utilidades e muito mais.</p>
         </div>

@@ -61,7 +61,7 @@ export default function DeliverySection() {
                 className="inline-flex items-center justify-center gap-2 bg-[#FE5000] hover:bg-[#d94300] text-white font-semibold px-8 py-4 rounded-full transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 w-full sm:w-auto"
               >
                 <MessageCircle size={18} />
-                Consultar frete pelo WhatsApp
+                Consultar pelo WhatsApp
               </a>
             </div>
           </div>

@@ -22,7 +22,7 @@ export default function WhatsAppFloat() {
             </div>
           </div>
           <p className="text-gray-600 text-xs bg-gray-50 rounded-xl p-3 mb-3 leading-relaxed">
-            Olá! Como posso ajudar? Consulte produtos, preços ou orçamentos pelo WhatsApp. 😊
+            Olá! Como posso ajudar? Consulte produtos, preços, frete ou orçamentos pelo WhatsApp. 
           </p>
           <a
             href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}

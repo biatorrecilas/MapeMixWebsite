@@ -23,7 +23,7 @@ export default function Cart({ items, onRemove, onClose }: CartProps) {
         <div className="flex items-center justify-between p-5 border-b border-gray-100">
           <div className="flex items-center gap-2">
             <ShoppingBag size={20} className="text-[#001A72]" />
-            <h2 className="font-display font-bold text-[#001A72] text-lg">Lista de interesse</h2>
+            <h2 className="font-display font-bold text-[#001A72] text-lg">Lista de Interesse</h2>
             {items.length > 0 && (
               <span className="bg-[#FE5000] text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
                 {items.length}
