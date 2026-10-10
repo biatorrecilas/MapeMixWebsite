@@ -5,48 +5,69 @@ import testimonialSocialIcon from '../assets/testimonials-social.svg';
 
 const GOOGLE_REVIEW_URL = 'https://www.google.com/maps?cid=17729418899676593261&action=openratings&ct=write-review#lrd=0x94c8cf58e3364a6f:0xf60b8c8e0551fc6d,1,,,,';
 
+// Média e total exibidos no perfil "Mape Mix 02" do Google Maps.
+const GOOGLE_RATING = { average: '5,0', total: 37 };
+
+// Avaliações reais mais recentes do Google (5 estrelas).
 const testimonials = [
   {
     id: 1,
-    name: '[Nome do cliente]',
-    avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=80&h=80&fit=crop&auto=format',
+    name: 'Edson C Silva',
     rating: 5,
-    comment: '[Depoimento editável] Atendimento excelente e sempre encontro o que preciso. Loja muito bem organizada e com ótimos preços!',
-    date: 'Outubro 2024',
+    comment: 'Loja com tudo a pronta entrega e vendedores excelentes sempre com um sorriso no rosto.',
+    date: 'Outubro 2026',
   },
   {
     id: 2,
-    name: '[Nome do cliente]',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&auto=format',
+    name: 'Andrew Oliveira',
     rating: 5,
-    comment: '[Depoimento editável] Encontrei tudo para minha reforma em um lugar só. Recomendo a Mape Mix para todo mundo de Campinas!',
-    date: 'Setembro 2024',
+    comment: 'Loja muito boa, sempre que preciso vou lá. Funcionários nota 10.',
+    date: 'Outubro 2026',
   },
   {
     id: 3,
-    name: '[Nome do cliente]',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&auto=format',
+    name: 'Silvano Carmo',
     rating: 5,
-    comment: '[Depoimento editável] Pessoal muito atencioso e prestativo. Me ajudaram a escolher os produtos certos para a minha instalação elétrica.',
-    date: 'Agosto 2024',
+    comment: 'Loja muito completa com atendimento top, recomendo muito.',
+    date: 'Outubro 2026',
   },
   {
     id: 4,
-    name: '[Nome do cliente]',
-    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&auto=format',
+    name: 'Fernando Jesus',
     rating: 5,
-    comment: '[Depoimento editável] Produto de qualidade e entrega rápida para casa. Preço justo e ótimo atendimento pelo WhatsApp.',
-    date: 'Agosto 2024',
+    comment: 'Lugar de preço e atendimento de primeira.',
+    date: 'Outubro 2026',
   },
   {
     id: 5,
-    name: '[Nome do cliente]',
-    avatar: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=80&h=80&fit=crop&auto=format',
-    rating: 4,
-    comment: '[Depoimento editável] Variedade incrível de produtos. Sempre que preciso de material de construção ou manutenção, a primeira opção é a Mape Mix.',
-    date: 'Julho 2024',
+    name: 'Jessica Moriel Zayit',
+    rating: 5,
+    comment: 'Ótima loja, grande variedade de itens.',
+    date: 'Outubro 2026',
+  },
+  {
+    id: 6,
+    name: 'Virlenia Silva',
+    rating: 5,
+    comment: 'Ótimo atendimento! Sempre atendendo da melhor forma!',
+    date: 'Outubro 2026',
+  },
+  {
+    id: 7,
+    name: 'Bruno De Paula',
+    rating: 5,
+    comment: 'Excelente atendimento. Parabéns ao trabalho 🤝',
+    date: 'Outubro 2026',
   },
 ];
+
+const initials = (name: string) =>
+  name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0].toUpperCase())
+    .join('');
 
 export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -86,10 +107,9 @@ export default function TestimonialsSection() {
             {[...Array(5)].map((_, i) => (
               <Star key={i} size={24} fill="#FE5000" className="text-[#FE5000]" />
             ))}
-            <span className="font-display font-bold text-[#001A72] text-xl ml-2">[X,X]</span>
-            <span className="text-gray-400 text-sm">([XX] avaliações)</span>
+            <span className="font-display font-bold text-[#001A72] text-xl ml-2">{GOOGLE_RATING.average}</span>
+            <span className="text-gray-400 text-sm">({GOOGLE_RATING.total} avaliações)</span>
           </div>
-          <p className="text-gray-400 text-sm italic">(substitua os dados de avaliação pelos dados reais)</p>
         </div>
 
         {/* Carrossel de Depoimentos */}
@@ -97,11 +117,12 @@ export default function TestimonialsSection() {
           {/* Card do Depoimento Ativo */}
           <div className="bg-[#f8f9fc] rounded-2xl p-8 sm:p-10 border border-gray-100 shadow-sm min-h-[200px] flex flex-col justify-center">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-              <img
-                src={activeTestimonial.avatar}
-                alt={activeTestimonial.name}
-                className="w-16 h-16 rounded-full object-cover flex-shrink-0 border-2 border-white shadow-sm"
-              />
+              <div
+                aria-hidden="true"
+                className="w-16 h-16 rounded-full flex-shrink-0 border-2 border-white shadow-sm bg-[#001A72] text-white font-display font-bold text-xl flex items-center justify-center"
+              >
+                {initials(activeTestimonial.name)}
+              </div>
               <div className="flex-1">
                 <p className="font-semibold text-[#001A72] text-lg">{activeTestimonial.name}</p>
                 <div className="flex items-center gap-0.5 mt-1">

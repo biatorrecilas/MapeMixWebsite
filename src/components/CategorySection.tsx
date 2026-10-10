@@ -16,9 +16,9 @@ const highlights = [
   { label: 'Hidráulica', category: 'Hidráulica' as Category, icon: hidraulicaIcon },
   { label: 'Iluminação', category: 'Iluminação' as Category, icon: iluminacaoIcon },
   { label: 'Ferramentas', category: 'Ferramentas' as Category, icon: ferramentasIcon },
-  { label: 'Pintura', category: 'Reformas' as Category, icon: pinturaIcon },
-  { label: 'Ferragens', category: 'Manutenção' as Category, icon: ferragensIcon },
-  { label: 'Utilidades', category: 'Casa e dia a dia' as Category, icon: utilidadesIcon },
+  { label: 'Pintura', category: 'Pintura' as Category, icon: pinturaIcon },
+  { label: 'Ferragens', category: 'Ferragens' as Category, icon: ferragensIcon },
+  { label: 'Utilidades', category: 'Utilidades' as Category, icon: utilidadesIcon },
 ];
 
 export default function CategorySection({ onCategorySelect }: CategorySectionProps) {

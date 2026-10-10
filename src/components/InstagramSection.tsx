@@ -1,4 +1,5 @@
-import { Play, Heart, MessageCircle, Eye } from 'lucide-react';
+import { Play, Heart, Eye } from 'lucide-react';
+import instagram from '../data/instagram.json';
 
 function InstagramIcon({ size = 18 }: { size?: number }) {
   return (
@@ -16,56 +17,19 @@ function FacebookIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-// Agora com 6 vídeos
-const reels = [
-  {
-    id: 1,
-    thumb: 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=300&h=500&fit=crop&auto=format',
-    views: '12,4 mil',
-    likes: '843',
-    label: 'Ferramentas em promoção 🔧',
-  },
-  {
-    id: 2,
-    thumb: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=500&fit=crop&auto=format',
-    views: '9,1 mil',
-    likes: '621',
-    label: 'Dicas de instalação elétrica ⚡',
-  },
-  {
-    id: 3,
-    thumb: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=300&h=500&fit=crop&auto=format',
-    views: '18,7 mil',
-    likes: '1.240',
-    label: 'Novidades de reforma 🏗️',
-  },
-  {
-    id: 4,
-    thumb: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=500&fit=crop&auto=format',
-    views: '7,3 mil',
-    likes: '488',
-    label: 'Produtos para casa 🏠',
-  },
-  {
-    id: 5,
-    thumb: 'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=300&h=500&fit=crop&auto=format',
-    views: '22,1 mil',
-    likes: '1.892',
-    label: 'Iluminação LED incrível 💡',
-  },
-  {
-    id: 6,
-    thumb: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=300&h=500&fit=crop&auto=format',
-    views: '15,2 mil',
-    likes: '934',
-    label: 'Equipamentos de proteção 🦺',
-  },
-];
+// Gerado por scripts/sync-instagram.mjs (npm run sync:instagram)
+const reels = instagram.reels;
+
+const compact = new Intl.NumberFormat('pt-BR', { notation: 'compact', maximumFractionDigits: 1 });
+const formatCount = (value: number) => compact.format(value);
+
+const totalViews = reels.reduce((sum, reel) => sum + reel.views, 0);
+const totalLikes = reels.reduce((sum, reel) => sum + reel.likes, 0);
 
 const metrics = [
-  { value: '[XX mil]', label: 'Seguidores' },
-  { value: '[XX milhões]', label: 'Visualizações' },
-  { value: '[XX mil]', label: 'Curtidas' },
+  { value: formatCount(instagram.followers), label: 'Seguidores' },
+  { value: `+${formatCount(totalViews)}`, label: 'Visualizações' },
+  { value: `+${formatCount(totalLikes)}`, label: 'Curtidas' },
 ];
 
 export default function SocialSection() {
@@ -114,7 +78,6 @@ export default function SocialSection() {
                 <div key={m.label} className="min-w-0 text-center sm:text-left">
                   <p className="whitespace-nowrap font-display text-base font-bold text-[#FE5000] sm:text-3xl">{m.value}</p>
                   <p className="mt-1 text-xs font-medium text-blue-200 sm:text-base">{m.label}</p>
-                  <p className="mt-0.5 text-[10px] italic text-white/40 sm:text-xs">(substitua pelo dado real)</p>
                 </div>
               ))}
             </div>
@@ -126,7 +89,7 @@ export default function SocialSection() {
               {reels.map((reel) => (
                 <a
                   key={reel.id}
-                  href="https://www.instagram.com/mapesolucoes/"
+                  href={reel.permalink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative w-full rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer"
@@ -134,7 +97,8 @@ export default function SocialSection() {
                 >
                   <img
                     src={reel.thumb}
-                    alt={reel.label}
+                    alt={reel.caption}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   {/* Overlay Escuro */}
@@ -148,16 +112,16 @@ export default function SocialSection() {
                   {/* Stats & Label */}
                   <div className="absolute bottom-2 left-2 right-2">
                     <p className="text-white text-[10px] sm:text-xs font-medium mb-1.5 line-clamp-2 leading-tight hidden sm:block">
-                      {reel.label}
+                      {reel.caption}
                     </p>
                     <div className="flex flex-wrap items-center gap-2 text-white/90 text-[9px] sm:text-[11px]">
                       <span className="flex items-center gap-1">
                         <Eye size={10} />
-                        {reel.views}
+                        {formatCount(reel.views)}
                       </span>
                       <span className="flex items-center gap-1">
                         <Heart size={10} />
-                        {reel.likes}
+                        {formatCount(reel.likes)}
                       </span>
                     </div>
                   </div>

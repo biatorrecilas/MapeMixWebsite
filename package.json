@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "prebuild": "node scripts/sync-instagram.mjs",
+    "sync:instagram": "node scripts/sync-instagram.mjs",
     "preview": "vite preview",
     "format": "oxfmt"
   },
