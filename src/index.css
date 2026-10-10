@@ -36,6 +36,36 @@ body {
   animation: warning-stripes 1.4s linear infinite;
 }
 
+.header-announcement-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.55rem 0;
+  font-size: 11px;
+}
+
+.header-announcement-track {
+  display: flex;
+  width: max-content;
+  animation: header-announcement-scroll 24s linear infinite;
+}
+
+.header-announcement-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding-right: 1rem;
+}
+
+.header-announcement-separator {
+  color: #fe5000;
+}
+
+@keyframes header-announcement-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @keyframes warning-stripes {
   to {
     background-position-x: 45px;
@@ -45,6 +75,14 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .warning-stripes {
     animation: none;
+  }
+
+  .header-announcement-track {
+    animation: none;
+  }
+
+  .header-announcement-marquee {
+    overflow-x: auto;
   }
 }
 

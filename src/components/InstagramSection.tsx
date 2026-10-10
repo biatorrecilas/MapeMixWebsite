@@ -109,12 +109,12 @@ export default function SocialSection() {
             </p>
 
             {/* Metrics (Agora sem o fundo) */}
-            <div className="flex flex-wrap gap-x-10 gap-y-6 mt-10">
+            <div className="mt-10 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-x-10 sm:gap-y-6">
               {metrics.map((m) => (
-                <div key={m.label} className="flex flex-col">
-                  <p className="font-display font-bold text-3xl text-[#FE5000]">{m.value}</p>
-                  <p className="text-blue-200 font-medium text-base mt-1">{m.label}</p>
-                  <p className="text-white/40 text-xs italic mt-0.5">(substitua pelo dado real)</p>
+                <div key={m.label} className="min-w-0 text-center sm:text-left">
+                  <p className="whitespace-nowrap font-display text-base font-bold text-[#FE5000] sm:text-3xl">{m.value}</p>
+                  <p className="mt-1 text-xs font-medium text-blue-200 sm:text-base">{m.label}</p>
+                  <p className="mt-0.5 text-[10px] italic text-white/40 sm:text-xs">(substitua pelo dado real)</p>
                 </div>
               ))}
             </div>

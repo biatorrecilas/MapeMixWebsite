@@ -85,14 +85,6 @@ function ProductModal({
               </div>
             )}
 
-            {product.price && (
-              <div className="mb-4">
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Preço</p>
-                <p className="text-2xl font-display font-bold text-[#FE5000]">{product.price}</p>
-                <p className="text-xs text-gray-400 mt-0.5">*Consulte disponibilidade e confirme o preço na loja</p>
-              </div>
-            )}
-
             <div className="flex items-center gap-2 mb-5">
               <div
                 className={`w-2 h-2 rounded-full ${product.available ? 'bg-green-500' : 'bg-gray-400'}`}
@@ -255,10 +247,6 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
                     {product.name}
                   </h3>
                   <p className="text-gray-500 text-[11px] sm:text-xs leading-relaxed mb-2 line-clamp-2">{product.description}</p>
-
-                  {product.price && (
-                    <p className="text-[#FE5000] font-display font-bold text-lg mb-2">{product.price}</p>
-                  )}
 
                   <div className="mt-auto flex gap-2">
                     <button

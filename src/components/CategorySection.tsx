@@ -29,7 +29,7 @@ export default function CategorySection({ onCategorySelect }: CategorySectionPro
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FE5000] mb-3">Do reparo rápido à reforma completa</p>
           <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-[#001A72]">Aqui Você Encontra</h2>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4 sm:gap-6">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
           {highlights.map(({ label, category, icon }) => (
             <button
               key={label}
@@ -39,7 +39,7 @@ export default function CategorySection({ onCategorySelect }: CategorySectionPro
                 document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth' });
               }}
               aria-label={`Ver produtos de ${label}`}
-              className="group flex flex-col items-center gap-4 rounded-2xl bg-transparent p-1 transition-transform duration-300 hover:-translate-y-1"
+              className="group flex w-[calc((100%_-_1rem)/2)] flex-col items-center gap-4 rounded-2xl bg-transparent p-1 text-center transition-transform duration-300 hover:-translate-y-1 sm:w-[calc((100%_-_3rem)/3)] lg:w-[calc((100%_-_4.5rem)/4)] xl:w-[calc((100%_-_9rem)/7)]"
             >
               <span className="flex h-32 w-32 sm:h-36 sm:w-36 items-center justify-center">
                 <img src={icon} alt="" aria-hidden="true" className="h-full w-full object-contain" loading="lazy" />

@@ -95,7 +95,21 @@ export default function Header({ cartCount, onCartOpen, productsPage, announceme
       </div>
 
       <div className="bg-[#001A72] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 py-2.5 sm:min-h-10 sm:gap-x-8 sm:py-0">
+        <div className="header-announcement-marquee sm:hidden" aria-label="Horário, endereço e telefone da Mape Mix">
+          <div className="header-announcement-track" aria-hidden="true">
+            {[0, 1].map((copy) => (
+              <span key={copy} className="header-announcement-copy">
+                <span>Seg a Sex: 07:30–17:30 · Sáb: 08:00–13:00</span>
+                <span className="header-announcement-separator">•</span>
+                <span>Av. Francisco de Angelis, 1244 · Vila Paraíso, Campinas</span>
+                <span className="header-announcement-separator">•</span>
+                <span>(19) 98454-7023</span>
+                <span className="header-announcement-separator">•</span>
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="hidden max-w-7xl mx-auto px-4 sm:px-6 sm:flex flex-wrap items-center justify-center gap-x-5 gap-y-2 py-2.5 sm:min-h-10 sm:gap-x-8 sm:py-0">
           <div className="flex items-center gap-2 text-[11px] sm:text-xs">
             <Clock3 size={14} className="shrink-0 text-[#FE5000]" />
             <span>Seg a Sex: 07:30–17:30 <span className="text-white/50">·</span> Sáb: 08:00–13:00</span>

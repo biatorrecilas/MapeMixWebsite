@@ -54,7 +54,6 @@ export default function Cart({ items, onRemove, onClose }: CartProps) {
                 <img src={item.image} alt={item.name} className="w-14 h-14 object-cover rounded-lg flex-shrink-0" />
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-[#001A72] text-sm line-clamp-2 leading-snug">{item.name}</p>
-                  {item.price && <p className="text-[#FE5000] font-bold text-sm mt-0.5">{item.price}</p>}
                 </div>
                 <button
                   onClick={() => onRemove(item.id)}
