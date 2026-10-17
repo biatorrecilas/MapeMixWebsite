@@ -40,6 +40,19 @@ body {
   animation: warning-stripes 1.4s linear infinite;
 }
 
+.social-section-glow {
+  background-image:
+    radial-gradient(ellipse at 25% 52%, rgba(0, 37, 168, 0.8), transparent 42%),
+    radial-gradient(ellipse at 92% 88%, rgba(254, 80, 0, 0.14), transparent 34%);
+}
+
+.social-section-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.2) 0.8px, transparent 0.8px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(90deg, transparent 8%, #000 100%);
+  opacity: 0.2;
+}
+
 .header-announcement-marquee {
   overflow: hidden;
   white-space: nowrap;

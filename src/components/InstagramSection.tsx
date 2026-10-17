@@ -87,65 +87,67 @@ export default function SocialSection() {
   }, [hasEntered]);
 
   return (
-    <section id="redes-sociais" className="relative isolate overflow-hidden bg-[#001A72] py-10 sm:py-12">
-      <div aria-hidden="true" className="warning-stripes absolute inset-x-0 top-0 h-3" />
-      <div aria-hidden="true" className="warning-stripes absolute inset-x-0 bottom-0 h-3" />
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="redes-sociais" className="relative isolate overflow-hidden bg-brand-blue py-14 sm:py-20">
+      <div aria-hidden="true" className="warning-stripes absolute inset-x-0 top-0 h-1 opacity-70" />
+      <div aria-hidden="true" className="warning-stripes absolute inset-x-0 bottom-0 h-1 opacity-70" />
+      <div aria-hidden="true" className="social-section-glow pointer-events-none absolute inset-0" />
+      <div aria-hidden="true" className="social-section-grid pointer-events-none absolute inset-0" />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
           
-          {/* Lado Esquerdo: Textos e Métricas sem fundo */}
-          <div>
-            <div className="flex flex-wrap gap-3 mb-6">
+          {/* Painel com perfis, mensagem e métricas */}
+          <div className="rounded-[1.75rem] border border-white/20 bg-white/[0.08] p-6 shadow-[0_24px_70px_rgba(0,14,71,0.2)] backdrop-blur-sm sm:p-9 lg:p-10">
+            <div className="mb-7 flex flex-nowrap gap-2 sm:gap-3">
               <a 
                 href="https://www.instagram.com/mapesolucoes/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 transition-colors rounded-full px-4 py-1.5 text-white/90 text-sm cursor-pointer"
+                className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full border border-white/20 bg-white/10 px-2 py-2 text-[10px] font-medium text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/20 min-[360px]:gap-1.5 min-[360px]:px-3 min-[360px]:text-xs sm:gap-2 sm:px-4 sm:text-sm"
               >
-                <InstagramIcon size={14} />
+                <InstagramIcon size={12} />
                 @mapesolucoes
               </a>
               <a 
                 href="https://www.facebook.com/mapesolucoes/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 transition-colors rounded-full px-4 py-1.5 text-white/90 text-sm cursor-pointer"
+                className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full border border-white/20 bg-white/10 px-2 py-2 text-[10px] font-medium text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/20 min-[360px]:gap-1.5 min-[360px]:px-3 min-[360px]:text-xs sm:gap-2 sm:px-4 sm:text-sm"
               >
-                <FacebookIcon size={14} />
+                <FacebookIcon size={12} />
                 @mapesolucoes
               </a>
             </div>
             
-              <h2 className="mb-4 max-w-xl font-display text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="mb-4 max-w-xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-white sm:text-4xl lg:text-[2.8rem]">
               Já acompanha a{' '}
               <span className="text-[#FE5000]">Mape Mix</span> nas redes sociais?
             </h2>
-            <p className="text-blue-200 text-base leading-relaxed max-w-xl">
+            <p className="max-w-xl text-base leading-relaxed text-blue-50/90 sm:text-lg">
               Confira nossos vídeos, novidades, produtos, dicas e muito mais.
             </p>
 
-            {/* Metrics (Agora sem o fundo) */}
-            <div ref={metricsRef} className="mt-10 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-x-10 sm:gap-y-6">
+            {/* Métricas de engajamento */}
+            <div ref={metricsRef} className="mt-8 grid grid-cols-3 divide-x divide-white/20 border-t border-white/20 pt-6 sm:mt-10 sm:pt-7">
               {metrics.map((m, index) => (
-                <div key={m.label} className="min-w-0 text-center">
-                  <p className="whitespace-nowrap font-display text-[clamp(1.25rem,6vw,1.5rem)] font-bold text-[#FE5000] sm:text-3xl">{m.prefix ?? ''}{formatCount(counts[index])}</p>
-                  <p className="mt-1 text-xs font-medium text-blue-200 sm:text-base">{m.label}</p>
+                <div key={m.label} className="min-w-0 px-1 text-center first:pl-0 last:pr-0 sm:px-3">
+                  <p className="whitespace-nowrap font-display text-[clamp(0.875rem,4.5vw,1.5rem)] font-bold tracking-tight text-white sm:text-3xl">{m.prefix ?? ''}{formatCount(counts[index])}</p>
+                  <p className="mt-1 text-[11px] font-medium text-blue-100/85 sm:text-sm">{m.label}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Lado Direito: Grid de Vídeos em 3 colunas (Formato feed Instagram) */}
-          <div className="mx-auto w-full lg:ml-auto lg:mr-0 flex justify-center lg:justify-end">
-            <div className="grid grid-cols-3 gap-2 sm:gap-4 max-w-[480px] w-full">
+          <div className="mx-auto flex w-full justify-center lg:ml-auto lg:mr-0 lg:py-4">
+            <div className="grid w-full max-w-[500px] grid-cols-3 gap-2.5 sm:gap-4">
               {reels.map((reel) => (
                 <a
                   key={reel.id}
                   href={reel.permalink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative w-full rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer"
+                  className="group relative w-full overflow-hidden rounded-2xl border border-white/25 bg-[#001A72] shadow-[0_18px_40px_rgba(0,15,70,0.3)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(0,15,70,0.42)] sm:rounded-[1.35rem]"
                   style={{ aspectRatio: '9/16' }}
                 >
                   <img
@@ -180,7 +182,7 @@ export default function SocialSection() {
                   </div>
 
                   {/* Borda laranja no hover */}
-                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl border-2 border-white/10 group-hover:border-[#FE5000]/60 transition-colors pointer-events-none" />
+                  <div className="pointer-events-none absolute inset-0 rounded-2xl border border-white/15 transition-colors group-hover:border-[#FE5000]/90 sm:rounded-[1.35rem]" />
                 </a>
               ))}
             </div>
