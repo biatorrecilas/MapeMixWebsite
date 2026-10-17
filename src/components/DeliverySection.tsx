@@ -14,11 +14,15 @@ const deliveryDetails = [
 
 export default function DeliverySection() {
   return (
-    <section id="entrega" className="bg-[#f8f9fc] py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="entrega" className="bg-[#f8f9fc] py-16 sm:py-20 lg:[--u:min(1px,calc(100vw/1774))]">
+      <div className="mx-auto w-[calc(100%-1.5rem)] sm:w-[calc(100%-3rem)] lg:w-[calc(var(--u)*1634)]">
         <div className="relative">
-          <div className="overflow-hidden rounded-3xl bg-[#001A72] shadow-[0_24px_70px_-32px_rgba(0,26,114,0.55)]">
-            <div className="grid lg:grid-cols-2">
+          <h2 className="mb-6 font-display text-[2rem] font-bold leading-tight text-[#FE5000] sm:mb-8 sm:text-[2.5rem]">
+            Precisa receber no<br className="sm:hidden" />{' '}local?
+          </h2>
+          <div className="relative">
+            <div className="overflow-hidden rounded-3xl bg-[#001A72] shadow-[0_24px_70px_-32px_rgba(0,26,114,0.55)]">
+              <div className="grid lg:grid-cols-2">
               <div className="relative h-72 sm:h-96 lg:h-auto lg:min-h-[560px]">
                 <img
                   src={entrega}
@@ -32,12 +36,9 @@ export default function DeliverySection() {
               </div>
 
               <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-14">
-                <h2 className="mb-4 whitespace-normal font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:whitespace-nowrap lg:text-[clamp(1.5rem,3vw,2rem)]">
-                  <span className="text-[#FE5000]">Precisa receber no local?</span>
-                </h2>
-                <p className="mb-7 max-w-xl text-base leading-relaxed text-blue-200">
+                <p className="mb-7 max-w-xl text-2xl leading-relaxed text-blue-200 sm:text-3xl">
                   A <strong className="font-semibold text-white">Mape Mix</strong> realiza frete para{' '}
-                  Campinas e região. Praticidade e conforto para você.
+                  Campinas e região. Praticidade e conforto para você!
                 </p>
 
                 <div className="mb-8 flex flex-col gap-3 text-sm text-blue-100">
@@ -64,14 +65,15 @@ export default function DeliverySection() {
                   </p>
                 </div>
               </div>
+              </div>
             </div>
+            <img
+              src={deliveryWarning}
+              alt=""
+              aria-hidden="true"
+              className="delivery-warning-float absolute right-8 top-0 z-20 h-32 w-32 object-contain"
+            />
           </div>
-          <img
-            src={deliveryWarning}
-            alt=""
-            aria-hidden="true"
-            className="delivery-warning-float absolute right-8 top-0 z-20 h-32 w-32 object-contain"
-          />
         </div>
       </div>
     </section>

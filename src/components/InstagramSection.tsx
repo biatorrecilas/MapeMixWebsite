@@ -124,7 +124,7 @@ export default function SocialSection() {
               <span className="text-[#FE5000]">Mape Mix</span> nas redes sociais?
             </h2>
             <p className="max-w-xl text-base leading-relaxed text-blue-50/90 sm:text-lg">
-              Confira nossos vídeos, novidades, produtos, dicas e muito mais.
+              Confira nossos vídeos, novidades, produtos, comunicados e muito mais.
             </p>
 
             {/* Métricas de engajamento */}
@@ -140,7 +140,7 @@ export default function SocialSection() {
 
           {/* Lado Direito: Grid de Vídeos em 3 colunas (Formato feed Instagram) */}
           <div className="mx-auto flex w-full justify-center lg:ml-auto lg:mr-0 lg:py-4">
-            <div className="grid w-full max-w-[500px] grid-cols-3 gap-2.5 sm:gap-4">
+            <div className="grid w-full max-w-[500px] grid-cols-3 gap-2.5 sm:gap-4 md:max-w-none md:gap-6 lg:max-w-[500px] lg:gap-4">
               {reels.map((reel) => (
                 <a
                   key={reel.id}
