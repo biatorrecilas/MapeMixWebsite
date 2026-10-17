@@ -14,8 +14,26 @@ import Cart from './components/Cart';
 import AnnouncementsPage from './components/AnnouncementsPage';
 import type { Category, Product } from './data/products';
 
+const validCategories: Category[] = [
+  'Todas',
+  'Elétrica',
+  'Hidráulica',
+  'Iluminação',
+  'Ferramentas',
+  'Ferragens',
+  'Pintura',
+  'Utilidades',
+  'Manutenção',
+  'Casa e Dia a Dia',
+];
+
+function getCategoryFromUrl(): Category {
+  const category = new URLSearchParams(window.location.search).get('categoria');
+  return category && validCategories.includes(category as Category) ? (category as Category) : 'Todas';
+}
+
 export default function App() {
-  const [activeCategory, setActiveCategory] = useState<Category>('Todas');
+  const [activeCategory, setActiveCategory] = useState<Category>(getCategoryFromUrl);
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [productsPage, setProductsPage] = useState(window.location.pathname === '/produtos');
@@ -25,6 +43,7 @@ export default function App() {
     const updateRoute = () => {
       setProductsPage(window.location.pathname === '/produtos');
       setAnnouncementsPage(window.location.pathname === '/comunicados');
+      setActiveCategory(getCategoryFromUrl());
     };
     window.addEventListener('popstate', updateRoute);
     return () => window.removeEventListener('popstate', updateRoute);
@@ -52,6 +71,17 @@ export default function App() {
 
   const handleCategorySelect = (cat: Category) => {
     setActiveCategory(cat);
+    window.history.pushState({}, '', `/produtos?categoria=${encodeURIComponent(cat)}`);
+    setProductsPage(true);
+    setAnnouncementsPage(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleProductCategoryChange = (cat: Category) => {
+    const nextCategory = activeCategory === cat ? 'Todas' : cat;
+    setActiveCategory(nextCategory);
+    const query = nextCategory === 'Todas' ? '' : `?categoria=${encodeURIComponent(nextCategory)}`;
+    window.history.replaceState({}, '', `/produtos${query}`);
   };
 
   return (
@@ -72,9 +102,7 @@ export default function App() {
           {!productsPage && <CategorySection onCategorySelect={handleCategorySelect} />}
           <ProductCatalog
             activeCategory={activeCategory}
-            onCategoryChange={(cat) =>
-              setActiveCategory((current) => (current === cat ? 'Todas' : cat))
-            }
+            onCategoryChange={handleProductCategoryChange}
             onAddToCart={handleAddToCart}
             cartItems={cartItems}
             fullPage={productsPage}

@@ -6,7 +6,7 @@ const navLinks = [
   { label: 'Início', href: '/' },
   { label: 'Produtos', href: '/produtos' },
   { label: 'Localização', href: '/#localizacao' },
-  { label: 'Contato', href: '/#contato' },
+  { label: 'Entrega', href: '/#entrega' },
 ];
 
 const WA_NUMBER = '5519984547023';
@@ -36,10 +36,10 @@ export default function Header({ cartCount, onCartOpen, productsPage, announceme
         scrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto flex h-20 items-center justify-between px-4 sm:h-16 sm:px-6">
         {/* Logo */}
         <a href="/" className="flex-shrink-0">
-          <img src={logoSrc} alt="Mape Mix — Reparo e Construção" className="h-26 w-auto" />
+          <img src={logoSrc} alt="Mape Mix — Reparo e Construção" className="h-[4.75rem] w-auto sm:h-16" />
         </a>
 
         {/* Desktop nav */}
@@ -61,7 +61,7 @@ export default function Header({ cartCount, onCartOpen, productsPage, announceme
           <button
             type="button"
             onClick={onAnnouncementsOpen}
-            className="p-2 text-[#001A72] transition-colors hover:text-[#FE5000]"
+            className="flex h-11 w-11 items-center justify-center text-[#001A72] transition-colors hover:text-[#FE5000]"
             aria-label="Comunicados da Mape Mix"
             title="Comunicados"
             aria-current={announcementsPage ? 'page' : undefined}
@@ -72,7 +72,7 @@ export default function Header({ cartCount, onCartOpen, productsPage, announceme
           {/* Cart */}
           <button
             onClick={onCartOpen}
-            className="relative p-2 text-[#001A72] hover:text-[#FE5000] transition-colors"
+            className="relative flex h-11 w-11 items-center justify-center text-[#001A72] transition-colors hover:text-[#FE5000]"
             aria-label="Lista de Interesse"
           >
             <ShoppingBag size={22} />
@@ -85,7 +85,7 @@ export default function Header({ cartCount, onCartOpen, productsPage, announceme
 
           {/* Mobile hamburger */}
           <button
-            className="lg:hidden p-2 text-[#001A72]"
+            className="flex h-11 w-11 items-center justify-center text-[#001A72] lg:hidden"
             onClick={() => setOpen(!open)}
             aria-label="Menu"
           >
@@ -95,7 +95,7 @@ export default function Header({ cartCount, onCartOpen, productsPage, announceme
       </div>
 
       <div className="bg-[#001A72] text-white">
-        <div className="header-announcement-marquee sm:hidden" aria-label="Horário, endereço e telefone da Mape Mix">
+        <div className="header-announcement-marquee lg:hidden" aria-label="Horário, endereço e telefone da Mape Mix">
           <div className="header-announcement-track" aria-hidden="true">
             {[0, 1].map((copy) => (
               <span key={copy} className="header-announcement-copy">
@@ -109,16 +109,16 @@ export default function Header({ cartCount, onCartOpen, productsPage, announceme
             ))}
           </div>
         </div>
-        <div className="hidden max-w-7xl mx-auto px-4 sm:px-6 sm:flex flex-wrap items-center justify-center gap-x-5 gap-y-2 py-2.5 sm:min-h-10 sm:gap-x-8 sm:py-0">
-          <div className="flex items-center gap-2 text-[11px] sm:text-xs">
+        <div className="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:flex flex-nowrap items-center justify-center gap-x-5 py-2.5 whitespace-nowrap lg:min-h-10 lg:gap-x-8 lg:py-0">
+          <div className="flex shrink-0 items-center gap-2 text-[11px] sm:text-xs">
             <Clock3 size={14} className="shrink-0 text-[#FE5000]" />
             <span>Seg a Sex: 07:30–17:30 <span className="text-white/50">·</span> Sáb: 08:00–13:00</span>
           </div>
-          <a href={productsPage || announcementsPage ? '/#localizacao' : '#localizacao'} className="flex items-center gap-2 text-[11px] sm:text-xs hover:text-orange-200 transition-colors">
+          <a href={productsPage || announcementsPage ? '/#localizacao' : '#localizacao'} className="flex shrink-0 items-center gap-2 text-[11px] sm:text-xs hover:text-orange-200 transition-colors">
             <MapPin size={14} className="shrink-0 text-[#FE5000]" />
             <span>Av. Francisco de Angelis, 1244 · Vila Paraíso, Campinas</span>
           </a>
-          <a href="tel:+5519984547023" className="flex items-center gap-2 text-[11px] sm:text-xs hover:text-orange-200 transition-colors">
+          <a href="tel:+5519984547023" className="flex shrink-0 items-center gap-2 text-[11px] sm:text-xs hover:text-orange-200 transition-colors">
             <Phone size={14} className="shrink-0 text-[#FE5000]" />
             <span>(19) 98454-7023</span>
           </a>

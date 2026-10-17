@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Search, SlidersHorizontal, Star, ShoppingBag, Eye, X, ArrowRight } from 'lucide-react';
 import { products, type Category, type Product } from '../data/products';
 
@@ -40,9 +40,9 @@ function ProductModal({
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="relative max-h-[94dvh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl sm:max-h-[90vh]">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
@@ -54,6 +54,9 @@ function ProductModal({
           {/* Image */}
           <div className="relative h-64 sm:h-full rounded-t-2xl sm:rounded-l-2xl sm:rounded-tr-none overflow-hidden bg-gray-50">
             <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+            <span className="absolute bottom-3 left-3 rounded-full bg-black/65 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-sm">
+              Imagem ilustrativa
+            </span>
             {!product.available && (
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <span className="bg-white text-gray-700 text-sm font-semibold px-3 py-1 rounded-full">
@@ -64,7 +67,7 @@ function ProductModal({
           </div>
 
           {/* Content */}
-          <div className="p-6">
+          <div className="p-4 sm:p-6">
             <span className="inline-block bg-[#001A72]/8 text-[#001A72] text-xs font-semibold px-2.5 py-1 rounded-full mb-3">
               {product.category}
             </span>
@@ -85,14 +88,12 @@ function ProductModal({
               </div>
             )}
 
-            <div className="flex items-center gap-2 mb-5">
-              <div
-                className={`w-2 h-2 rounded-full ${product.available ? 'bg-green-500' : 'bg-gray-400'}`}
-              />
-              <span className="text-sm text-gray-600">
-                {product.available ? 'Disponível em loja' : 'Disponibilidade sob consulta'}
-              </span>
-            </div>
+            {!product.available && (
+              <div className="flex items-center gap-2 mb-5">
+                <div className="w-2 h-2 rounded-full bg-gray-400" />
+                <span className="text-sm text-gray-600">Disponibilidade sob consulta</span>
+              </div>
+            )}
 
             <div className="flex flex-col gap-2">
               <a
@@ -132,6 +133,11 @@ function ProductModal({
 export default function ProductCatalog({ activeCategory, onCategoryChange, onAddToCart, cartItems, fullPage }: ProductCatalogProps) {
   const [search, setSearch] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+
+  useEffect(() => {
+    if (fullPage && activeCategory !== 'Todas') setFiltersOpen(true);
+  }, [fullPage, activeCategory]);
 
   const filtered = useMemo(() => {
     return products.filter((p) => {
@@ -153,7 +159,7 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
         <div className="mb-8 flex flex-col gap-6 text-left md:flex-row md:items-center md:justify-between">
         <div className="min-w-0">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FE5000] mb-3">Você procura, a Mape Mix tem!</p>
-          <h2 className={`font-display font-extrabold text-[#001A72] ${fullPage ? 'text-4xl sm:text-5xl' : 'max-w-2xl text-4xl sm:text-5xl'}`}>
+          <h2 className={`font-display font-bold text-[#001A72] ${fullPage ? 'text-3xl sm:text-4xl' : 'max-w-2xl text-3xl sm:text-4xl'}`}>
             {fullPage ? 'Todos os Produtos' : <>Um Mix de Produtos<br className="hidden sm:block" /> para o que Você Precisa</>}
           </h2>
           </div>
@@ -163,7 +169,8 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
             type="button"
             aria-label="Abrir filtros de produtos"
             title="Filtros"
-            onClick={() => document.getElementById('product-filters')?.classList.toggle('hidden')}
+            aria-expanded={filtersOpen}
+            onClick={() => setFiltersOpen((open) => !open)}
             className={window.location.pathname === '/' ? 'hidden' : 'absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full p-2 text-[#001A72] transition-colors hover:bg-blue-50'}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -185,7 +192,7 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
         </div>
 
         {/* Category filters */}
-      <div id="product-filters" className={window.location.pathname === '/' ? 'hidden' : 'hidden mb-12 flex flex-wrap justify-start gap-3 sm:mb-14'}>
+      <div id="product-filters" className={`${filtersOpen ? 'mb-8 flex' : 'hidden'} flex-wrap justify-start gap-3 sm:mb-12`}>
           {allCategories.map((cat) => (
             <button
               key={cat}
@@ -209,7 +216,7 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
             <p className="text-sm mt-1">Tente outro termo ou entre em contato pelo WhatsApp.</p>
           </div>
         ) : (
-          <div className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 ${fullPage ? '' : '[&>*:nth-child(n+5)]:hidden sm:[&>*:nth-child(n+5)]:block sm:[&>*:nth-child(n+7)]:hidden lg:[&>*:nth-child(n+7)]:block lg:[&>*:nth-child(n+9)]:hidden'}`}>
+          <div className={`grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 ${fullPage ? '' : '[&>*:nth-child(n+5)]:hidden sm:[&>*:nth-child(n+5)]:block sm:[&>*:nth-child(n+7)]:hidden lg:[&>*:nth-child(n+7)]:block lg:[&>*:nth-child(n+9)]:hidden'}`}>
             {(fullPage ? filtered : filtered.slice(0, 8)).map((product) => (
               <div
                 key={product.id}
@@ -222,6 +229,9 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
                     alt={product.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <span className="absolute bottom-2 left-2 rounded-full bg-black/65 px-2 py-1 text-[9px] font-medium text-white backdrop-blur-sm sm:text-[10px]">
+                    Imagem ilustrativa
+                  </span>
                   {product.popular && (
                     <div className="absolute top-2 left-2 bg-[#FE5000] text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
                       <Star size={10} fill="white" />
@@ -231,11 +241,6 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
                   {!product.available && (
                     <div className="absolute top-2 right-2 bg-gray-600 text-white text-xs font-medium px-2 py-1 rounded-full">
                       Sob consulta
-                    </div>
-                  )}
-                  {product.available && (
-                    <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded-full">
-                      Disponível
                     </div>
                   )}
                 </div>
@@ -275,7 +280,7 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
         )}
         {!fullPage && (
           <div className="text-center mt-10">
-            <a href="/produtos" className="inline-flex items-center gap-2 rounded-full bg-[#FE5000] px-8 py-4 text-white font-bold text-lg shadow-lg hover:bg-[#d94300] hover:-translate-y-0.5 transition">Ver mais produtos</a>
+            <a href="/produtos" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#FE5000] px-6 py-3 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#d94300] sm:px-8 sm:py-4 sm:text-lg">Ver mais produtos</a>
           </div>
         )}
       </div>

@@ -41,7 +41,7 @@ export default function Hero() {
       id="inicio"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="relative min-h-[480px] flex items-center overflow-hidden bg-[#001A72] pt-16"
+      className="relative flex min-h-[480px] items-center overflow-hidden bg-[#001A72] pt-20 sm:min-h-[520px] sm:pt-16"
     >
       {banners.map((banner, index) => (
         <img key={banner.image} src={banner.image} alt={banner.alt} aria-hidden={index !== active}
@@ -50,12 +50,12 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-[#001058]/90 via-[#001A72]/55 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#001058]/35 via-transparent to-transparent" />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full py-8 lg:py-12">
-        <div className="max-w-2xl translate-y-4 text-white sm:translate-y-6">
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-5xl font-bold leading-tight mb-4">Encontre tudo o que <span className="text-[#FE5000]">você precisa</span> em um só lugar.</h1>
-          <p className="text-blue-100 text-lg leading-relaxed max-w-lg">Elétrica, hidráulica, iluminação, ferramentas, pintura, ferragens, materiais para reformas, manutenção, utilidades e muito mais.</p>
+        <div className="max-w-2xl text-white">
+          <h1 className="mb-4 font-display text-[clamp(1.875rem,5vw,2.75rem)] font-bold leading-[1.1]">Encontre tudo o que <span className="text-[#FE5000]">você precisa</span> em um só lugar.</h1>
+          <p className="max-w-lg text-base leading-relaxed text-blue-100">Elétrica, hidráulica, iluminação, ferramentas, pintura, ferragens, materiais para reformas, manutenção, utilidades e muito mais.</p>
         </div>
       </div>
-      <div className="absolute z-20 bottom-6 right-5 sm:right-10 flex items-center gap-2.5">
+      <div className="absolute bottom-5 right-4 z-20 flex items-center gap-2.5 sm:bottom-6 sm:right-10">
         {banners.map((banner, index) => <button key={banner.image} type="button" onClick={() => setActive(index)} aria-label={`Ir para banner ${index + 1}`} aria-current={active === index ? 'true' : undefined} className={`h-2.5 rounded-full transition-all ${active === index ? 'w-8 bg-[#FE5000]' : 'w-2.5 bg-white/80 hover:bg-white'}`} />)}
       </div>
     </section>

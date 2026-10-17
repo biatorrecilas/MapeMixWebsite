@@ -23,6 +23,10 @@ html {
   scroll-behavior: smooth;
 }
 
+section[id] {
+  scroll-margin-top: 8rem;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background-color: #ffffff;

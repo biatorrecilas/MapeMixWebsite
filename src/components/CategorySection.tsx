@@ -23,25 +23,22 @@ const highlights = [
 
 export default function CategorySection({ onCategorySelect }: CategorySectionProps) {
   return (
-    <section id="categorias" className="py-20 sm:py-24 bg-white">
+    <section id="categorias" className="bg-white py-14 sm:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 sm:mb-16">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FE5000] mb-3">Do reparo rápido à reforma completa</p>
-          <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-[#001A72]">Aqui Você Encontra</h2>
+        <div className="mb-9 text-center sm:mb-14">
+          <p className="mb-3 text-[0.625rem] font-bold uppercase leading-snug tracking-[0.14em] text-[#FE5000] sm:text-xs sm:tracking-[0.2em]">Do reparo rápido à reforma completa</p>
+          <h2 className="font-display text-3xl font-bold text-[#001A72] sm:text-4xl">Aqui Você Encontra</h2>
         </div>
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+        <div className="flex flex-wrap justify-center gap-x-3 gap-y-6 sm:gap-x-6 sm:gap-y-8">
           {highlights.map(({ label, category, icon }) => (
             <button
               key={label}
               type="button"
-              onClick={() => {
-                onCategorySelect(category);
-                document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => onCategorySelect(category)}
               aria-label={`Ver produtos de ${label}`}
-              className="group flex w-[calc((100%_-_1rem)/2)] flex-col items-center gap-4 rounded-2xl bg-transparent p-1 text-center transition-transform duration-300 hover:-translate-y-1 sm:w-[calc((100%_-_3rem)/3)] lg:w-[calc((100%_-_4.5rem)/4)] xl:w-[calc((100%_-_9rem)/7)]"
+              className="group flex w-[calc((100%_-_0.75rem)/2)] flex-col items-center gap-3 rounded-2xl bg-transparent p-1 text-center transition-transform duration-300 hover:-translate-y-1 sm:w-[calc((100%_-_3rem)/3)] sm:gap-4 lg:w-[calc((100%_-_4.5rem)/4)] xl:w-[calc((100%_-_9rem)/7)]"
             >
-              <span className="flex h-32 w-32 sm:h-36 sm:w-36 items-center justify-center">
+              <span className="flex h-24 w-24 items-center justify-center sm:h-32 sm:w-32 lg:h-36 lg:w-36">
                 <img src={icon} alt="" aria-hidden="true" className="h-full w-full object-contain" loading="lazy" />
               </span>
               <span className="font-display text-sm sm:text-base font-semibold text-[#001A72]">{label}</span>

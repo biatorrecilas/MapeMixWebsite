@@ -8,10 +8,10 @@ export default function WhatsAppFloat() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+    <div className="fixed bottom-4 right-4 z-40 flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
       {/* Expanded bubble */}
       {expanded && (
-        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 w-64 animate-in slide-in-from-bottom-4">
+        <div className="w-[min(16rem,calc(100vw_-_2rem))] rounded-2xl border border-gray-100 bg-white p-4 shadow-2xl animate-in slide-in-from-bottom-4">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center">
               <MessageCircle size={18} className="text-white" />
@@ -39,7 +39,7 @@ export default function WhatsAppFloat() {
       {/* Float button */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-16 h-16 bg-[#25D366] hover:bg-[#1ea854] text-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-green-500/30 transition-all duration-300 hover:-translate-y-1 relative"
+        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-[#1ea854] hover:shadow-green-500/30 sm:h-16 sm:w-16"
         aria-label="Abrir WhatsApp"
       >
         {expanded ? <X size={24} /> : <MessageCircle size={28} />}

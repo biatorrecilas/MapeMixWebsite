@@ -8,9 +8,9 @@ const MAPS_URL = 'https://maps.app.goo.gl/8WTRhHMXaHHZPaa56';
 
 export default function LocationSection() {
   return (
-    <section id="localizacao" className="pb-20 bg-white">
+    <section id="localizacao" className="bg-white pb-14 sm:pb-20">
       <div className="relative isolate min-h-[190px] overflow-visible bg-[#001A72] sm:min-h-[210px]">
-        <div className="absolute inset-y-0 right-0 w-[min(42vw,320px)] overflow-hidden rounded-r-2xl">
+        <div className="absolute inset-y-0 right-0 w-[min(34vw,320px)] overflow-hidden rounded-r-2xl sm:w-[min(42vw,320px)]">
           <img
             src={equipeImg}
             alt="Atendente da Mape Mix pronta para receber você na loja"
@@ -19,14 +19,14 @@ export default function LocationSection() {
           <div aria-hidden="true" className="absolute inset-0 bg-[#FE5000] [clip-path:polygon(15%_0%,16%_0%,1%_100%,0%_100%)]" />
         </div>
         <div className="relative z-[1] mx-auto flex min-h-[190px] max-w-7xl items-center px-4 py-4 sm:min-h-[210px] sm:px-6 sm:py-5">
-          <div className="max-w-[54%] sm:max-w-[62%]">
-            <p className="mb-2 text-[0.65rem] font-extrabold uppercase tracking-[0.2em] text-[#FE6A2A] sm:mb-3 sm:text-xs">
+          <div className="max-w-[62%] sm:max-w-[62%]">
+            <p className="mb-1.5 text-[0.65rem] font-extrabold uppercase tracking-[0.16em] text-[#FE6A2A] sm:mb-3 sm:text-xs sm:tracking-[0.2em]">
               Sua loja de confiança em Campinas
             </p>
-            <h2 className="font-display text-3xl font-extrabold leading-[1.02] tracking-tight text-white sm:text-5xl">
+            <h2 className="font-display text-[clamp(1.5rem,5vw,2.25rem)] font-bold leading-[1.08] tracking-tight text-white sm:text-4xl">
               Venha nos Visitar!
             </h2>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-blue-100 sm:text-base">
+            <p className="mt-2 max-w-xl text-[13px] leading-5 text-blue-100 sm:mt-3 sm:text-base sm:leading-relaxed">
               Uma loja completa, com atendimento de quem entende do assunto.
             </p>
           </div>
@@ -36,7 +36,7 @@ export default function LocationSection() {
       <div className="mx-auto mt-10 max-w-7xl px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-8 items-stretch">
           {/* Left: store image */}
-          <div className="relative rounded-3xl overflow-hidden bg-gray-100 min-h-80">
+          <div className="relative h-72 overflow-hidden rounded-3xl bg-gray-100 sm:h-80 lg:h-auto lg:min-h-80">
             <img
               src={frenteImg}
               alt="Fachada da loja Mape Mix em Campinas"
@@ -56,7 +56,7 @@ export default function LocationSection() {
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin size={22} className="text-[#FE5000] flex-shrink-0 mt-1" />
-                <p className="font-bold text-[#001A72] text-base leading-snug">
+                <p className="font-bold text-[#001A72] text-sm leading-snug sm:text-base">
                   Av. Francisco de Angelis, 1244 - Vila Paraiso,
                   Campinas/SP.
                 </p>
@@ -64,7 +64,7 @@ export default function LocationSection() {
 
               <div className="flex items-center gap-3">
                 <Clock size={20} className="text-[#FE5000] flex-shrink-0" />
-                <p className="text-[#001A72] text-base">
+                <p className="text-sm leading-relaxed text-[#001A72] sm:text-base">
                   Seg a Sex: 07:30 - 17:30 |
                   Sáb: 08:00 - 13:00
                 </p>
@@ -77,7 +77,7 @@ export default function LocationSection() {
                   href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#001A72] text-base hover:text-[#FE5000] transition-colors"
+                  className="text-sm text-[#001A72] transition-colors hover:text-[#FE5000] sm:text-base"
                 >
                   +55 19 98454-7023
                 </a>

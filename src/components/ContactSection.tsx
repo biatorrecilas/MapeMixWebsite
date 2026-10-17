@@ -18,10 +18,10 @@ export default function ContactSection() {
         <span className="inline-block bg-[#001A72]/8 text-[#001A72] text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
           Contato
         </span>
-        <h2 className="font-display text-4xl sm:text-5xl font-bold text-[#001A72] mb-4">
+        <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#001A72] mb-4">
           Fale com a Mape Mix
         </h2>
-        <p className="text-gray-500 text-lg mb-10 max-w-xl mx-auto">
+        <p className="text-gray-500 text-base leading-relaxed mb-10 max-w-xl mx-auto">
           Tem dúvidas, precisa de um orçamento ou quer consultar a disponibilidade de um produto?
         </p>
 

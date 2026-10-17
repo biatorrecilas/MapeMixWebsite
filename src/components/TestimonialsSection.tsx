@@ -83,29 +83,29 @@ export default function TestimonialsSection() {
   const activeTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="relative isolate overflow-hidden py-20 bg-white">
+    <section className="relative isolate overflow-hidden bg-white py-14 sm:py-20">
       <img
         src={testimonialIcon}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute right-5 top-5 z-0 h-200 w-200 object-contain opacity-[0.08] sm:right-10 sm:top-8 sm:h-72 sm:w-72"
+        className="pointer-events-none absolute right-0 top-2 z-0 h-40 w-40 object-contain opacity-[0.08] sm:right-10 sm:top-8 sm:h-72 sm:w-72"
       />
       <img
         src={testimonialSocialIcon}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-4 left-12 z-0 h-250 w-250 object-contain opacity-[0.08] sm:bottom-8 sm:left-16 sm:h-72 sm:w-72"
+        className="pointer-events-none absolute bottom-4 left-0 z-0 h-44 w-44 object-contain opacity-[0.08] sm:bottom-8 sm:left-16 sm:h-72 sm:w-72"
       />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Header - Alinhado à esquerda */}
-        <div className="text-left mb-14">
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-[#001A72] mb-4">
+        <div className="mb-10 text-left sm:mb-14">
+          <h2 className="mb-4 font-display text-3xl font-bold text-[#001A72] sm:text-4xl">
             O Que Nossos Clientes Dizem
           </h2>
-          <div className="flex items-center justify-start gap-2 mb-4">
+          <div className="mb-4 flex flex-wrap items-center justify-start gap-1.5 sm:gap-2">
             {[...Array(5)].map((_, i) => (
-              <Star key={i} size={24} fill="#FE5000" className="text-[#FE5000]" />
+              <Star key={i} size={20} className="text-[#FE5000] sm:h-6 sm:w-6" fill="#FE5000" />
             ))}
             <span className="font-display font-bold text-[#001A72] text-xl ml-2">{GOOGLE_RATING.average}</span>
             <span className="text-gray-400 text-sm">({GOOGLE_RATING.total} avaliações)</span>
@@ -115,7 +115,7 @@ export default function TestimonialsSection() {
         {/* Carrossel de Depoimentos */}
         <div className="max-w-4xl mx-auto mb-14">
           {/* Card do Depoimento Ativo */}
-          <div className="bg-[#f8f9fc] rounded-2xl p-8 sm:p-10 border border-gray-100 shadow-sm min-h-[200px] flex flex-col justify-center">
+          <div className="flex min-h-[200px] flex-col justify-center rounded-2xl border border-gray-100 bg-[#f8f9fc] p-5 shadow-sm sm:p-10">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
               <div
                 aria-hidden="true"
@@ -139,7 +139,7 @@ export default function TestimonialsSection() {
               <span className="text-sm text-gray-400">{activeTestimonial.date}</span>
             </div>
             
-            <p className="text-gray-600 text-lg sm:text-xl leading-relaxed italic">
+            <p className="text-base italic leading-relaxed text-gray-600 sm:text-lg">
               "{activeTestimonial.comment}"
             </p>
           </div>
@@ -148,7 +148,7 @@ export default function TestimonialsSection() {
           <div className="flex items-center justify-center gap-8 mt-8">
             <button 
               onClick={prevSlide}
-              className="p-2 rounded-full text-[#001A72] bg-gray-50 hover:bg-gray-100 transition-colors"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-50 text-[#001A72] transition-colors hover:bg-gray-100"
               aria-label="Depoimento anterior"
             >
               <ChevronLeft size={24} />
@@ -171,7 +171,7 @@ export default function TestimonialsSection() {
 
             <button 
               onClick={nextSlide}
-              className="p-2 rounded-full text-[#001A72] bg-gray-50 hover:bg-gray-100 transition-colors"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-50 text-[#001A72] transition-colors hover:bg-gray-100"
               aria-label="Próximo depoimento"
             >
               <ChevronRight size={24} />
@@ -180,7 +180,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* CTA Final - Alinhado à direita */}
-        <div className="flex flex-col items-end text-right">
+        <div className="flex flex-col items-center text-center sm:items-end sm:text-right">
           <p className="text-gray-500 mb-4">Quer contar sua experiência?</p>
           <a
             href={GOOGLE_REVIEW_URL}

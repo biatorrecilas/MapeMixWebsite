@@ -14,8 +14,8 @@ const WA_NUMBER = '5519984547023';
 export default function Footer() {
   return (
     <footer id="sobre" className="bg-[#001A72] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 sm:py-16">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
             <img src={logoSrc} alt="Mape Mix" className="h-12 mb-4" />
@@ -151,11 +151,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-blue-300 text-sm">
+        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-center sm:mt-12 sm:flex-row sm:gap-4 sm:pt-8 sm:text-left">
+          <p className="text-xs text-blue-300 sm:text-sm">
             © 2026 Mape Mix. Todos os direitos reservados.
           </p>
-          <p className="text-blue-300 text-sm">
+          <p className="text-xs text-blue-300 sm:text-sm">
             Reparo & Construção | Campinas/SP
           </p>
         </div>

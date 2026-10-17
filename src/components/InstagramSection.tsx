@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Play, Heart, Eye } from 'lucide-react';
 import instagram from '../data/instagram.json';
 
@@ -27,14 +28,66 @@ const totalViews = reels.reduce((sum, reel) => sum + reel.views, 0);
 const totalLikes = reels.reduce((sum, reel) => sum + reel.likes, 0);
 
 const metrics = [
-  { value: formatCount(instagram.followers), label: 'Seguidores' },
-  { value: `+${formatCount(totalViews)}`, label: 'Visualizações' },
-  { value: `+${formatCount(totalLikes)}`, label: 'Curtidas' },
+  { value: instagram.followers, label: 'Seguidores' },
+  { value: totalViews, label: 'Visualizações', prefix: '+' },
+  { value: totalLikes, label: 'Curtidas', prefix: '+' },
 ];
 
 export default function SocialSection() {
+  const metricsRef = useRef<HTMLDivElement>(null);
+  const [hasEntered, setHasEntered] = useState(false);
+  const [counts, setCounts] = useState(() => metrics.map(() => 0));
+
+  useEffect(() => {
+    const element = metricsRef.current;
+    if (!element) return;
+
+    if (!('IntersectionObserver' in window)) {
+      setHasEntered(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEntered(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!hasEntered) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      setCounts(metrics.map((metric) => metric.value));
+      return;
+    }
+
+    let frame = 0;
+    const duration = 1500;
+    const start = performance.now();
+
+    const animate = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const easedProgress = 1 - (1 - progress) ** 3;
+      setCounts(metrics.map((metric) => Math.floor(metric.value * easedProgress)));
+
+      if (progress < 1) frame = requestAnimationFrame(animate);
+    };
+
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, [hasEntered]);
+
   return (
-    <section id="redes-sociais" className="relative isolate py-12 bg-[#001A72] overflow-hidden">
+    <section id="redes-sociais" className="relative isolate overflow-hidden bg-[#001A72] py-10 sm:py-12">
       <div aria-hidden="true" className="warning-stripes absolute inset-x-0 top-0 h-3" />
       <div aria-hidden="true" className="warning-stripes absolute inset-x-0 bottom-0 h-3" />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
@@ -64,19 +117,19 @@ export default function SocialSection() {
               </a>
             </div>
             
-            <h2 className="font-display text-4xl sm:text-5xl font-bold text-white mb-4">
+              <h2 className="mb-4 max-w-xl font-display text-3xl font-bold text-white sm:text-4xl">
               Já acompanha a{' '}
               <span className="text-[#FE5000]">Mape Mix</span> nas redes sociais?
             </h2>
-            <p className="text-blue-200 text-lg max-w-xl">
+            <p className="text-blue-200 text-base leading-relaxed max-w-xl">
               Confira nossos vídeos, novidades, produtos, dicas e muito mais.
             </p>
 
             {/* Metrics (Agora sem o fundo) */}
-            <div className="mt-10 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-x-10 sm:gap-y-6">
-              {metrics.map((m) => (
-                <div key={m.label} className="min-w-0 text-center sm:text-left">
-                  <p className="whitespace-nowrap font-display text-base font-bold text-[#FE5000] sm:text-3xl">{m.value}</p>
+            <div ref={metricsRef} className="mt-10 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-x-10 sm:gap-y-6">
+              {metrics.map((m, index) => (
+                <div key={m.label} className="min-w-0 text-center">
+                  <p className="whitespace-nowrap font-display text-[clamp(1.25rem,6vw,1.5rem)] font-bold text-[#FE5000] sm:text-3xl">{m.prefix ?? ''}{formatCount(counts[index])}</p>
                   <p className="mt-1 text-xs font-medium text-blue-200 sm:text-base">{m.label}</p>
                 </div>
               ))}
