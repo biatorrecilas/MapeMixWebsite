@@ -3,8 +3,10 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import CategorySection from './components/CategorySection';
 import ProductCatalog from './components/ProductCatalog';
+import BrandsSection from './components/BrandsSection';
 import InstagramSection from './components/InstagramSection';
 import TestimonialsSection from './components/TestimonialsSection';
+import ClientsSection from './components/ClientsSection';
 import DeliverySection from './components/DeliverySection';
 import LocationSection from './components/LocationSection';
 import ContactSection from './components/ContactSection';
@@ -107,9 +109,11 @@ export default function App() {
             cartItems={cartItems}
             fullPage={productsPage}
           />
+          {!productsPage && <BrandsSection />}
           {!productsPage && <LocationSection />}
           {!productsPage && <DeliverySection />}
           {!productsPage && <InstagramSection />}
+          {!productsPage && <ClientsSection />}
           {!productsPage && <TestimonialsSection />}
         </main>
       )}

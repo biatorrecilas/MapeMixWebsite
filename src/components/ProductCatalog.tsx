@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Search, SlidersHorizontal, Star, ShoppingBag, Eye, X, ArrowRight } from 'lucide-react';
 import { products, type Category, type Product } from '../data/products';
+import deliveryWarning from '../assets/delivery-warning.svg';
 
 const allCategories: Category[] = [
   'Elétrica',
@@ -153,7 +154,7 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
   const cartIds = new Set(cartItems.map((p) => p.id));
 
   return (
-    <section id="catalogo" className={`${fullPage ? 'pt-32 sm:pt-36 pb-24 sm:pb-28' : 'pt-16 sm:pt-20 pb-24 sm:pb-28'} bg-[#f7f8fb]`}>
+    <section id="catalogo" className={`${fullPage ? 'pt-32 sm:pt-36 pb-24 sm:pb-28' : 'pt-16 sm:pt-20 pb-10 sm:pb-16'} bg-[#f7f8fb]`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="mb-8 flex flex-col gap-6 text-left md:flex-row md:items-center md:justify-between">
@@ -190,6 +191,11 @@ export default function ProductCatalog({ activeCategory, onCategoryChange, onAdd
           />
           </div>
         </div>
+
+        <p className="mb-8 flex items-center gap-2 rounded-xl border-l-4 border-[#FE5000] bg-white px-4 py-2 text-sm leading-relaxed text-gray-600 shadow-sm sm:gap-2.5 sm:px-5 sm:text-base">
+          <img src={deliveryWarning} alt="" aria-hidden="true" className="h-8 w-8 shrink-0 object-contain" />
+          <span>Esta vitrine mostra uma amostra dos nossos produtos. Temos uma variedade ainda maior para atender você!</span>
+        </p>
 
         {/* Category filters */}
       <div id="product-filters" className={`${filtersOpen ? 'mb-8 flex' : 'hidden'} flex-wrap justify-start gap-3 sm:mb-12`}>

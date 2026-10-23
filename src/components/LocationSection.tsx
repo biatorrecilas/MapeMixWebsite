@@ -48,9 +48,6 @@ export default function LocationSection() {
       <div className={`relative ${CONTAINER}`}>
         <div className="relative z-10 min-h-[250px] pt-10 sm:min-h-[300px] sm:pt-16 lg:ml-[calc(var(--u)*113)] lg:min-h-[calc(var(--u)*307)] lg:pt-[calc(var(--u)*80)]">
           <div className="relative max-w-[calc(100%-min(204px,52.5vw))] sm:max-w-[54%] lg:max-w-none">
-            <p className="font-display text-[0.68rem] font-semibold uppercase leading-tight tracking-[0.02em] text-[#FC730F] sm:text-sm lg:text-[calc(var(--u)*18)]">
-              Sua loja de confiança em Campinas
-            </p>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-[-0.025em] text-white sm:mt-5 sm:text-5xl lg:mt-[calc(var(--u)*8)] lg:text-[calc(var(--u)*64)] lg:leading-[1.08]">
               Venha nos{' '}
               <span className="relative inline-block whitespace-nowrap text-[#FE6200]">
@@ -103,11 +100,6 @@ export default function LocationSection() {
                 alt="Fachada da Mape Mix em Campinas"
                 className="absolute inset-0 h-full w-full object-cover object-[center_0%]"
               />
-              <div className="absolute bottom-3 left-3 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(0,0,0,0.2)] backdrop-blur-md sm:bottom-5 sm:left-5 xl:bottom-[calc(var(--u)*20)] xl:left-[calc(var(--u)*20)]">
-                <span>
-                  <span className="mt-0.5 block font-display text-[0.8rem] text-white sm:text-[1.05rem] xl:text-[max(12px,calc(var(--u)*17.5))]">Vila Paraíso, Campinas/SP</span>
-                </span>
-              </div>
             </div>
           </div>
 

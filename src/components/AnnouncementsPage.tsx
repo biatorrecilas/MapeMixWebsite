@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import beginningPhoto from '../assets/about-us/começo.jpg';
 import teamPhoto from '../assets/about-us/trio.jpg';
-import openingPhoto from '../assets/about-us/20221001_084226.jpg';
+import secondStorePhoto from '../assets/about-us/segunda-unidade.png';
 
 const topics = [
   { icon: CalendarDays, label: 'Feriados e horários' },
@@ -26,7 +26,7 @@ const milestones = [
     number: '01',
     year: 'XXXX',
     label: 'O começo',
-    title: 'Uma loja pequena, um sonho grande',
+    title: 'Mape Soluções',
     description:
       'A Mape Mix começou com a vontade de ajudar a vizinhança a cuidar da casa e resolver os reparos do dia a dia. O atendimento próximo segue fazendo parte da loja.',
     image: beginningPhoto,
@@ -35,12 +35,12 @@ const milestones = [
   {
     number: '02',
     year: 'XXXX',
-    label: 'Um novo capítulo',
+    label: 'Novo capítulo',
     title: 'A segunda unidade',
     description:
       'A confiança de quem já comprava com a gente abriu caminho para uma nova unidade. Assim, mais clientes puderam encontrar produtos para construção, manutenção e casa.',
-    image: openingPhoto,
-    imageAlt: 'Comemoração da equipe Mape Mix em uma das lojas',
+    image: secondStorePhoto,
+    imageAlt: 'Fachada da segunda unidade Mape Mix, com a loja aberta',
   },
 ];
 
@@ -136,7 +136,7 @@ export default function AnnouncementsPage() {
             {milestones.map((milestone) => (
               <article key={milestone.number} className="overflow-hidden rounded-2xl border border-[#e7e2d9] bg-white">
                 <div className="relative h-56 overflow-hidden sm:h-64">
-                  <img src={milestone.image} alt={milestone.imageAlt} loading="lazy" className="h-full w-full object-cover" />
+                  <img src={milestone.image} alt={milestone.imageAlt} loading="lazy" className={`h-full w-full object-cover ${milestone.number === '02' ? 'object-top' : ''}`} />
                   <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#001A72]/65 to-transparent" aria-hidden="true" />
                   <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white">
                     <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FE5000] text-xs font-extrabold">{milestone.number}</span>

@@ -14,12 +14,20 @@ const deliveryDetails = [
 
 export default function DeliverySection() {
   return (
-    <section id="entrega" className="bg-[#f8f9fc] py-16 sm:py-20 lg:[--u:min(1px,calc(100vw/1774))]">
+    <section id="entrega" className="bg-[#f8f9fc] pb-16 pt-8 sm:pb-20 sm:pt-12 lg:[--u:min(1px,calc(100vw/1774))]">
       <div className="mx-auto w-[calc(100%-1.5rem)] sm:w-[calc(100%-3rem)] lg:w-[calc(var(--u)*1634)]">
         <div className="relative">
-          <h2 className="mb-6 font-display text-[2rem] font-bold leading-tight text-[#FE5000] sm:mb-8 sm:text-[2.5rem]">
-            Precisa receber no<br className="sm:hidden" />{' '}local?
-          </h2>
+          <div className="mb-6 flex items-stretch gap-3 sm:mb-8 sm:gap-4">
+            <span aria-hidden="true" className="w-1 shrink-0 rounded-full bg-[#FE5000]" />
+            <div className="min-w-0">
+              <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-[#FE5000] sm:text-sm">
+                Prefere receber no local?
+              </p>
+              <h2 className="font-display text-[2rem] font-bold leading-[1.08] tracking-tight text-[#001A72] sm:text-[2.7rem]">
+                A Mape Mix vai <span className="text-[#FE5000]">até você.</span>
+              </h2>
+            </div>
+          </div>
           <div className="relative">
             <div className="overflow-hidden rounded-3xl bg-[#001A72] shadow-[0_24px_70px_-32px_rgba(0,26,114,0.55)]">
               <div className="grid lg:grid-cols-2">
@@ -30,6 +38,7 @@ export default function DeliverySection() {
                   className="absolute inset-0 h-full w-full object-cover object-[center_62%]"
                 />
                 <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#001A72]/75 via-transparent to-black/10" />
+           
                 <div className="absolute bottom-5 left-5 inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(0,0,0,0.2)] backdrop-blur-md sm:bottom-7 sm:left-7">
                   Entrega em Campinas e região
                 </div>
@@ -37,13 +46,12 @@ export default function DeliverySection() {
 
               <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-14">
                 <p className="mb-7 max-w-xl text-2xl leading-relaxed text-blue-200 sm:text-3xl">
-                  A <strong className="font-semibold text-white">Mape Mix</strong> realiza frete para{' '}
-                  Campinas e região. Praticidade e conforto para você!
+                  A Mape Mix entrega em Campinas e região. <strong className="font-semibold text-white"> Praticidade e conforto para você!</strong>
                 </p>
 
-                <div className="mb-8 flex flex-col gap-3 text-sm text-blue-100">
+                <div className="mb-8 flex flex-col gap-3 text-sm text-blue-100 sm:text-base">
                   {deliveryDetails.map(({ icon: Icon, text }) => (
-                    <p key={text} className="flex items-start gap-2">
+                    <p key={text} className="flex items-center gap-2 whitespace-nowrap">
                       <Icon size={18} className="shrink-0 text-[#FE5000]" aria-hidden="true" />
                       <span>{text}</span>
                     </p>
@@ -67,12 +75,6 @@ export default function DeliverySection() {
               </div>
               </div>
             </div>
-            <img
-              src={deliveryWarning}
-              alt=""
-              aria-hidden="true"
-              className="delivery-warning-float absolute right-8 top-0 z-20 h-32 w-32 object-contain"
-            />
           </div>
         </div>
       </div>

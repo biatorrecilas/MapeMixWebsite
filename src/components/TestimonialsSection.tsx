@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Star, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import testimonialIcon from '../assets/testimonials-announcement.svg';
 import testimonialSocialIcon from '../assets/testimonials-social.svg';
@@ -6,58 +6,212 @@ import testimonialSocialIcon from '../assets/testimonials-social.svg';
 const GOOGLE_REVIEW_URL = 'https://www.google.com/maps?cid=17729418899676593261&action=openratings&ct=write-review#lrd=0x94c8cf58e3364a6f:0xf60b8c8e0551fc6d,1,,,,';
 
 // Média e total exibidos no perfil "Mape Mix 02" do Google Maps.
-const GOOGLE_RATING = { average: '5,0', total: 37 };
+const GOOGLE_RATING = { average: '5,0', total: 40 };
 
 // Avaliações reais mais recentes do Google (5 estrelas).
 const testimonials = [
   {
     id: 1,
-    name: 'Edson C Silva',
+    name: 'Bianca Maria',
     rating: 5,
-    comment: 'Loja com tudo a pronta entrega e vendedores excelentes sempre com um sorriso no rosto.',
-    date: 'Outubro 2026',
+    comment: 'Para quem precisa de reparos é uma ótima opção! Além de vender os produtos, fui bem orientada para executar de forma correta. E atendimento do Sr. Ademar foi excepcional, muito querido.',
+    date: 'Outubro de 2026',
   },
   {
     id: 2,
-    name: 'Andrew Oliveira',
+    name: 'Aline Cordeiro',
     rating: 5,
-    comment: 'Loja muito boa, sempre que preciso vou lá. Funcionários nota 10.',
-    date: 'Outubro 2026',
+    comment: 'Estive em Campinas e recebi um excelente atendimento, produto de qualidade e preço ótimo ! Estão de parabéns !',
+    date: 'Outubro de 2026',
   },
   {
     id: 3,
-    name: 'Silvano Carmo',
+    name: 'Bruno De Paula',
     rating: 5,
-    comment: 'Loja muito completa com atendimento top, recomendo muito.',
-    date: 'Outubro 2026',
+    comment: 'Excelente atendimento. Parabéns ao trabalho 🤝 …',
+    date: 'Outubro de 2026',
   },
   {
     id: 4,
     name: 'Fernando Jesus',
     rating: 5,
     comment: 'Lugar de preço e atendimento de primeira.',
-    date: 'Outubro 2026',
+    date: 'Outubro de 2026',
   },
   {
     id: 5,
     name: 'Jessica Moriel Zayit',
     rating: 5,
-    comment: 'Ótima loja, grande variedade de itens.',
-    date: 'Outubro 2026',
+    comment: 'Ótima loja, grande variedade de itens',
+    date: 'Outubro de 2026',
   },
   {
     id: 6,
-    name: 'Virlenia Silva',
+    name: 'Rodrigo',
     rating: 5,
-    comment: 'Ótimo atendimento! Sempre atendendo da melhor forma!',
-    date: 'Outubro 2026',
+    comment: 'Lugar sensacional',
+    date: 'Outubro de 2026',
   },
   {
     id: 7,
-    name: 'Bruno De Paula',
+    name: 'Edson C Silva',
     rating: 5,
-    comment: 'Excelente atendimento. Parabéns ao trabalho 🤝',
-    date: 'Outubro 2026',
+    comment: 'Loja com tudo a pronta entrega e vendedores excelentes sempre com um sorriso no rosto.',
+    date: 'Outubro de 2026',
+  },
+  {
+    id: 8,
+    name: 'Silvano Carmo',
+    rating: 5,
+    comment: 'Loja muito completa com atendimento top rescomendo muito',
+    date: 'Outubro de 2026',
+  },
+  {
+    id: 9,
+    name: 'Andrew Oliveira',
+    rating: 5,
+    comment: 'Loja muito boa sempre que preciso vou lá. Funcionários nota 10',
+    date: 'Outubro de 2026',
+  },
+  {
+    id: 10,
+    name: 'Virlenia Silva',
+    rating: 5,
+    comment: 'Ótimo atendimento! Sempre atendendo da melhor forma!',
+    date: 'Outubro de 2026',
+  },
+  {
+    id: 11,
+    name: 'VITOR EMANUEL',
+    rating: 5,
+    comment: 'Melhor Loja De Materiais De Construção De Campinas, Venham Tomar Um Cafezinho é Conferir',
+    date: 'Outubro de 2026',
+  },
+  {
+    id: 12,
+    name: 'José Francisco Specian junior',
+    rating: 5,
+    comment: 'Excelente atendimento, com ampla variedade e bem localizada. Parabéns 👏👏👏👏👏 …',
+    date: 'Setembro de 2026',
+  },
+  {
+    id: 13,
+    name: 'Marcos Antonio Battistel Mees',
+    rating: 5,
+    comment: 'Equipe e atendimento Fenomenais. Consegui encontrar todos os itens!',
+    date: 'Setembro de 2026',
+  },
+  {
+    id: 14,
+    name: 'Adilson Carlos Gagliotti',
+    rating: 5,
+    comment: 'Muito bom ,ótimo atendimento. Comodidade de estacionar em frente a loja. Nota 10',
+    date: 'Setembro de 2026',
+  },
+  {
+    id: 15,
+    name: 'Renan Chiminazzo',
+    rating: 5,
+    comment: 'Fui atendido pelos adilson e ademar! Muito bom atendimento! Super preocupados em ajudar',
+    date: 'Setembro de 2026',
+  },
+  {
+    id: 16,
+    name: 'Pizzaria Vicenzo',
+    rating: 5,
+    comment: 'Atendimento excelente ,  praticamente e de tudo para manutenção',
+    date: 'Setembro de 2026',
+  },
+  {
+    id: 17,
+    name: 'william oliveira',
+    rating: 5,
+    comment: 'Ótimo lugar',
+    date: 'Setembro de 2026',
+  },
+  {
+    id: 18,
+    name: 'Luca Agustini',
+    rating: 5,
+    comment: 'Ótimo atendimento',
+    date: 'Setembro de 2026',
+  },
+  {
+    id: 19,
+    name: 'Auto Eletrica Tiago',
+    rating: 5,
+    comment: 'Atendimento ótimo , pessoas muito onesta preço justo',
+    date: 'Setembro de 2026',
+  },
+  {
+    id: 20,
+    name: 'Lucia Gazzaneo',
+    rating: 5,
+    comment: 'Amo vcs todos que sempre tem tudo...inclusive um coração enorme',
+    date: 'Setembro de 2026',
+  },
+  {
+    id: 21,
+    name: 'Tânia Borges',
+    rating: 5,
+    comment: 'Excelente atendimento, Sr Ademar muito atencioso',
+    date: 'Por volta de outubro de 2025',
+  },
+  {
+    id: 22,
+    name: 'Carina Marques',
+    rating: 5,
+    comment: 'Loja excelente e muito organizada. Encontrei tudo que eu precisava e fui muito bem atendida!',
+    date: 'Por volta de outubro de 2022',
+  },
+  {
+    id: 23,
+    name: 'daniellopes deoliveira',
+    rating: 5,
+    comment: 'Loja excelente!!!!\nTem tudo que precisar!!',
+    date: 'Por volta de outubro de 2022',
+  },
+  {
+    id: 24,
+    name: 'Elias Oliveira',
+    rating: 5,
+    comment: 'Tenho certeza que você será bem atendido...',
+    date: 'Por volta de outubro de 2022',
+  },
+  {
+    id: 25,
+    name: 'victor barreto',
+    rating: 5,
+    comment: 'Excelente loja. Tem de tudo e os matérias são de primeira qualidade. Atendimento top!',
+    date: 'Por volta de outubro de 2022',
+  },
+  {
+    id: 26,
+    name: 'Anjo Quitério Sobral',
+    rating: 5,
+    comment: 'A loja tem uma ótima estrutura e o atendimento é maravilhoso! Tem grande variedade de produtos e oferecem ótimas condições de pagamento! Indico de olhos fechados!',
+    date: 'Por volta de outubro de 2022',
+  },
+  {
+    id: 27,
+    name: 'ademar pereira',
+    rating: 5,
+    comment: 'Excelente atendimento muito bom loja compreta tem todo tipo material hidráulico elétrica ferramentas pinturas reparo registro material pedreiro e material em geral',
+    date: 'Por volta de outubro de 2022',
+  },
+  {
+    id: 28,
+    name: 'Marcelo Henrique',
+    rating: 5,
+    comment: 'Loja Maravilhosa,tudo para sua reforma e acabamento,excelente profissionais e ótimos preços !',
+    date: 'Por volta de outubro de 2022',
+  },
+  {
+    id: 29,
+    name: 'Márcia Piccolo',
+    rating: 5,
+    comment: 'Loja maravilhosa atendimento 10👏🏻👏🏻👏🏻👏🏻SUCESSOOOO👏🏻👏🏻👏🏻👏🏻 …',
+    date: 'Por volta de outubro de 2022',
   },
 ];
 
@@ -71,6 +225,14 @@ const initials = (name: string) =>
 
 export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    }, 7000);
+
+    return () => window.clearInterval(interval);
+  }, []);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
@@ -114,64 +276,52 @@ export default function TestimonialsSection() {
 
         {/* Carrossel de Depoimentos */}
         <div className="max-w-4xl mx-auto mb-14">
-          {/* Card do Depoimento Ativo */}
-          <div className="flex min-h-[200px] flex-col justify-center rounded-2xl border border-gray-100 bg-[#f8f9fc] p-5 shadow-sm sm:p-10">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-              <div
-                aria-hidden="true"
-                className="w-16 h-16 rounded-full flex-shrink-0 border-2 border-white shadow-sm bg-[#001A72] text-white font-display font-bold text-xl flex items-center justify-center"
-              >
-                {initials(activeTestimonial.name)}
-              </div>
-              <div className="flex-1">
-                <p className="font-semibold text-[#001A72] text-lg">{activeTestimonial.name}</p>
-                <div className="flex items-center gap-0.5 mt-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={14}
-                      fill={i < activeTestimonial.rating ? '#FE5000' : 'transparent'}
-                      className={i < activeTestimonial.rating ? 'text-[#FE5000]' : 'text-gray-300'}
-                    />
-                  ))}
-                </div>
-              </div>
-              <span className="text-sm text-gray-400">{activeTestimonial.date}</span>
-            </div>
-            
-            <p className="text-base italic leading-relaxed text-gray-600 sm:text-lg">
-              "{activeTestimonial.comment}"
-            </p>
-          </div>
-
-          {/* Controles: Setas e Bolinhas */}
-          <div className="flex items-center justify-center gap-8 mt-8">
-            <button 
+          <div className="grid grid-cols-[44px_minmax(0,1fr)_44px] items-center gap-2 sm:gap-4">
+            <button
               onClick={prevSlide}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-50 text-[#001A72] transition-colors hover:bg-gray-100"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-50 text-[#001A72] transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#001A72]"
               aria-label="Depoimento anterior"
             >
               <ChevronLeft size={24} />
             </button>
-            
-            <div className="flex items-center gap-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  aria-label={`Ir para depoimento ${index + 1}`}
-                  className={`transition-all duration-300 rounded-full ${
-                    index === currentIndex 
-                      ? 'w-6 h-2.5 bg-[#FE5000]' 
-                      : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
-                  }`}
-                />
-              ))}
+
+            {/* Card do Depoimento Ativo */}
+            <div className="flex min-h-[250px] flex-col justify-center rounded-2xl border border-gray-100 bg-[#f8f9fc] p-5 shadow-sm sm:min-h-[230px] sm:p-10">
+              <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <div
+                  aria-hidden="true"
+                  className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full border-2 border-white bg-[#001A72] font-display text-xl font-bold text-white shadow-sm"
+                >
+                  {initials(activeTestimonial.name)}
+                </div>
+                <div className="flex-1">
+                  <p className="text-lg font-semibold text-[#001A72]">{activeTestimonial.name}</p>
+                  <div className="mt-1 flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        size={14}
+                        fill={i < activeTestimonial.rating ? '#FE5000' : 'transparent'}
+                        className={i < activeTestimonial.rating ? 'text-[#FE5000]' : 'text-gray-300'}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <span className="text-sm text-gray-400">{activeTestimonial.date}</span>
+              </div>
+
+              <p className="text-base italic leading-relaxed text-gray-600 sm:text-lg">
+                “{activeTestimonial.comment}”
+              </p>
+
+              <span className="mt-5 self-end text-sm font-semibold tabular-nums text-[#001A72]" aria-live="polite">
+                {String(currentIndex + 1).padStart(2, '0')} / {String(testimonials.length).padStart(2, '0')}
+              </span>
             </div>
 
-            <button 
+            <button
               onClick={nextSlide}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-50 text-[#001A72] transition-colors hover:bg-gray-100"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-50 text-[#001A72] transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#001A72]"
               aria-label="Próximo depoimento"
             >
               <ChevronRight size={24} />

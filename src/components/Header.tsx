@@ -39,7 +39,7 @@ export default function Header({ cartCount, onCartOpen, productsPage, announceme
       <div className="max-w-7xl mx-auto flex h-20 items-center justify-between px-4 sm:h-16 sm:px-6">
         {/* Logo */}
         <a href="/" className="flex-shrink-0">
-          <img src={logoSrc} alt="Mape Mix — Reparo e Construção" className="h-[4.75rem] w-auto sm:h-16" />
+          <img src={logoSrc} alt="Mape Mix — Reparo e Construção" className="h-20 w-[6.5rem] object-cover sm:h-16 sm:w-[7.5rem]" />
         </a>
 
         {/* Desktop nav */}

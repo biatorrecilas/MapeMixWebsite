@@ -42,8 +42,16 @@ body {
 
 .social-section-glow {
   background-image:
-    radial-gradient(ellipse at 25% 52%, rgba(0, 37, 168, 0.8), transparent 42%),
+    radial-gradient(ellipse at 50% 26%, rgba(0, 37, 168, 0.8), transparent 42%),
     radial-gradient(ellipse at 92% 88%, rgba(254, 80, 0, 0.14), transparent 34%);
+}
+
+@media (min-width: 1024px) {
+  .social-section-glow {
+    background-image:
+      radial-gradient(ellipse at 25% 52%, rgba(0, 37, 168, 0.8), transparent 42%),
+      radial-gradient(ellipse at 92% 88%, rgba(254, 80, 0, 0.14), transparent 34%);
+  }
 }
 
 .social-section-grid {
@@ -83,6 +91,241 @@ body {
   }
 }
 
+.brands-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+}
+
+.brands-track {
+  display: flex;
+  width: max-content;
+  animation: brands-scroll 38s linear infinite;
+}
+
+.brands-marquee:hover .brands-track {
+  animation-play-state: paused;
+}
+
+.brands-list {
+  display: flex;
+  flex: none;
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+
+.brands-item {
+  display: flex;
+  width: 172px;
+  min-height: 88px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border: 1px solid #e9edf5;
+  border-radius: 0.85rem;
+  background: #fff;
+  box-shadow: 0 3px 15px rgb(0 26 114 / 5%);
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.12rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.brands-item img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.brands-item[data-brand='tigre'] img,
+.brands-item[data-brand='papaiz'] img {
+  width: 128px;
+  height: 56px;
+}
+
+.brands-item[data-brand='papaiz'] img {
+  object-fit: cover;
+}
+
+.brands-item.brands-logo-loaded .brands-wordmark {
+  display: none;
+}
+
+.brands-wordmark {
+  font-size: 1.35rem;
+  letter-spacing: -0.045em;
+}
+
+.brands-item[data-brand='steck'] .brands-wordmark,
+.brands-item[data-brand='tigre'] .brands-wordmark,
+.brands-item[data-brand='papaiz'] .brands-wordmark {
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.brands-item[data-brand='avant'] .brands-wordmark,
+.brands-item[data-brand='deca'] .brands-wordmark {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.brands-item[data-brand='stanley'] .brands-wordmark {
+  border-radius: 0.15rem;
+  background: #ffdf00;
+  padding: 0.25rem 0.45rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+}
+
+.brands-item[data-brand='suvinil'] .brands-wordmark {
+  font-weight: 800;
+  letter-spacing: -0.055em;
+}
+
+.brands-item[data-brand='tramontina'] .brands-wordmark {
+  font-style: italic;
+  font-weight: 700;
+}
+
+@keyframes brands-scroll {
+  to { transform: translateX(-50%); }
+}
+
+.clients-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+}
+
+.clients-track {
+  display: flex;
+  width: max-content;
+  animation: brands-scroll 48s linear infinite;
+}
+
+.clients-marquee:hover .clients-track {
+  animation-play-state: paused;
+}
+
+.clients-list {
+  display: flex;
+  flex: none;
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+
+.clients-item {
+  display: flex;
+  width: 230px;
+  min-height: 88px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border: 1px solid #e9edf5;
+  border-radius: 0.85rem;
+  background: #fff;
+  box-shadow: 0 3px 15px rgb(0 26 114 / 5%);
+  padding: 0.75rem 1rem;
+}
+
+.clients-item img {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  object-fit: contain;
+}
+
+.clients-item-logo-only img {
+  width: 180px;
+  height: 54px;
+}
+
+.clients-item-logo-only .clients-wordmark {
+  display: none;
+}
+
+.clients-cambui-logo {
+  width: 180px;
+  height: 52px;
+  flex: none;
+  background-image: url('/images/clients/cambui-corporate-reference.png');
+  background-repeat: no-repeat;
+  background-size: 500px 190px;
+  background-position: -162px -72px;
+}
+
+.clients-wordmark {
+  color: #001a72;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+@media (max-width: 640px) {
+  .brands-marquee,
+  .clients-marquee {
+    overflow-x: auto;
+    mask-image: none;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .brands-marquee::-webkit-scrollbar,
+  .clients-marquee::-webkit-scrollbar {
+    display: none;
+  }
+
+  .brands-track,
+  .clients-track {
+    animation: none;
+  }
+
+  .brands-item {
+    width: 150px;
+    min-height: 76px;
+    font-size: 1rem;
+  }
+
+  .brands-item img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brands-wordmark {
+    font-size: 1.15rem;
+  }
+
+  .clients-item {
+    width: 200px;
+    min-height: 76px;
+  }
+
+  .clients-item img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .clients-item-logo-only img {
+    width: 160px;
+    height: 50px;
+  }
+
+  .clients-cambui-logo {
+    width: 160px;
+    height: 46px;
+    background-size: 444px 169px;
+    background-position: -144px -64px;
+  }
+
+  .clients-wordmark {
+    font-size: 0.95rem;
+  }
+}
+
 @keyframes warning-stripes {
   to {
     background-position-x: 45px;
@@ -101,26 +344,41 @@ body {
   .header-announcement-marquee {
     overflow-x: auto;
   }
+
+  .brands-marquee,
+  .clients-marquee {
+    overflow-x: auto;
+    mask-image: none;
+  }
+
+  .brands-track,
+  .clients-track {
+    animation: none;
+  }
+
+  .brands-track .brands-list[aria-hidden='true'],
+  .clients-track .clients-list[aria-hidden='true'] {
+    display: none;
+  }
 }
 
 .delivery-warning-float {
-  transform: translateY(-50%);
   filter: drop-shadow(0 8px 12px rgba(0, 26, 114, 0.2));
   animation: delivery-warning-float 3s ease-in-out infinite;
 }
 
 @keyframes delivery-warning-float {
   0%, 55%, 100% {
-    transform: translateY(-50%) rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
   }
   58%, 70% {
-    transform: translateY(-50%) rotate(-6deg) scale(1.03);
+    transform: rotate(-6deg) scale(1.03);
   }
   64%, 76% {
-    transform: translateY(-50%) rotate(6deg) scale(1.03);
+    transform: rotate(6deg) scale(1.03);
   }
   82% {
-    transform: translateY(-50%) rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
   }
 }
 
